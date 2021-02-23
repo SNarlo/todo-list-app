@@ -1,7 +1,12 @@
+@font-face {
+    font-family: neue-light;
+    src: url(../fonts/NeueMontreal-Light.otf)
+}
+
 * {
     margin: 0;
     padding: 0;
-    font-family: futura;
+    font-family: neue-light;
 }
 
 body {
@@ -18,10 +23,10 @@ body {
 
 .main-section-bg {
     position: absolute;
-    top: 7.5%;
-    left: 5%;
+    bottom: 0;
+    left: 2.5%;
     height: 90vh;
-    width: 90vw;
+    width: 95vw;
     background-color: #FFFFFF;
     box-shadow: 28px 28px 45px rgba(13, 39, 80, 0.16);
 
@@ -29,14 +34,14 @@ body {
 
 .main-section {
     position: absolute;
-    top: 7.5%;
-    left: 5%;
+    bottom: 0;
+    left: 2.5%;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     height: 90vh;
-    width: 90vw;
+    width: 95vw;
     background-color: #FFFFFF;
     box-shadow: -23px -23px 45px rgba(255, 255, 255, 0.7);
 }
@@ -54,7 +59,7 @@ body {
 .item-top-section {
     padding: 2%;
     background-color: #FFFFFF;
-    border-bottom: 3px solid black;
+    border-bottom: 3px solid whitesmoke;
     margin-left: 10px;
     margin-right: 10px;
 } 
@@ -88,6 +93,7 @@ body {
     right: 0;
     width: 20%;
     justify-content: center;
+    background-color: whitesmoke;
 }
 
 .list-top-section {
@@ -97,7 +103,7 @@ body {
     height: 15%;
     width: 100%;
     align-items: center;
-    border-left: 10px solid black;
+    
 }
 
 .list-top-section img {
@@ -109,7 +115,6 @@ body {
 .lists {
     display: flex;
     justify-content: center;
-    border-left: 10px solid black;
     width: 100%;
     height: 90%;
 }

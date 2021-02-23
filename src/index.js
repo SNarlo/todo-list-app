@@ -1,10 +1,12 @@
-import _ from 'lodash';
+import PopupMenu from './modules/list-popup-menu';
 
-function component() {
-    const element = document.createElement('div');
+
+
+init();
+
+function init() {
+  // List Logic
+  PopupMenu.openPopupWindow();
+  PopupMenu.closePopup();
   
-  
-    return element;
-  }
-  
-  document.body.appendChild(component());
+}

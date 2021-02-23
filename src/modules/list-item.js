@@ -1,13 +1,16 @@
 const createListItem = (() => {
 
-    const listItem = () => {
+    const createListContainer = (listName) => {
+        const listContainer = document.createElement('div');
+        listContainer.setAttribute('id', listName);
+        listContainer.className = 'list-heading-container';
+        listContainer.innerHTML = listName;
     }
-
-    
     return {
-        listItem,
+        createListContainer,
     }
-
 })();
+
+export default createListItem;
 
 
