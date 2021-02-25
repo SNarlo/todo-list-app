@@ -5,8 +5,8 @@ import PopupMenu from './modules/list-popup-menu';
 init();
 
 function init() {
-  // List Logic
+  //List logic
   PopupMenu.openPopupWindow();
-  PopupMenu.closePopup();
-  
+  PopupMenu.closePopupWindow();
+
 }

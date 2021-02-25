@@ -85,6 +85,44 @@ body {
     height: 100%;
 }
 
+.list-popup {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    width: 100%;
+    height: fit-content;
+}
+
+.list-name {
+    width: 80%;
+    height: 38px;
+    background-color: white;
+    font-size: 26px;
+    border: none;
+    outline: none;
+    padding-left: 5%;
+    box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.1);
+}
+
+.add-list-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-top: 0.5em;
+}
+
+.add-list-buttons button {
+    width: 35%;
+    border-radius: 0;
+    border: none;
+    outline: none;
+    background-color: whitesmoke;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
 .lists-section {
     display: flex;
     flex-direction: column;
