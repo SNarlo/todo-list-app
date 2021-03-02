@@ -6,7 +6,7 @@ import createListItem from './list-item';
 const PopupMenu = (() => {
     
     const listPopup = document.querySelector('.list-popup');
-    const popupInputBox = document.querySelector('.list-name');
+    const popupInputBox = document.getElementById('list-name');
 
     const openPopupWindow = () => {
         let addButton = document.querySelector('.add-list-item');
@@ -24,26 +24,24 @@ const PopupMenu = (() => {
     }
 
     const addListItem = () => {
+
         let addButton = document.querySelector('.add-list');
 
-        if ((popupInputBox.value != null)) { // need to fix this !!
-            console.log(popupInputBox.value);
-            let listName = popupInputBox.textContent;
-            addButton.addEventListener('click', createListItem.createListContainer(listName));
-        }
-        
-        if (!(popupInputBox && popupInputBox.value)) {
-            addButton.addEventListener('click', () =>{
-                
-                popupInputBox.className = 'list-name-invalid';
-                setInterval(() => {popupInputBox.className = 'list-name'}, 700); // change class name back
-            });
-        }
-        
-        
+        addButton.addEventListener('click', () => {
+            if (popupInputBox.value.length > 0) {     
+                console.log("Contents in input field");
+            }
+    
+            if (popupInputBox.value.length < 1) {
+                popupInputBox.id = 'list-name-invalid';
+                setInterval(() => {popupInputBox.id = 'list-name'}, 800); // change class name back     
+            }
+        });
+
+
+       
         
     }
-    
 
     return {
         openPopupWindow,
