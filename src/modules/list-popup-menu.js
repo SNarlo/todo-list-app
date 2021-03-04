@@ -5,22 +5,26 @@ import createListItem from './list-item';
  */
 const PopupMenu = (() => {
     
+    let popupWindowOpen = false;
     const listPopup = document.querySelector('.list-popup');
     const popupInputBox = document.getElementById('list-name');
 
     const openPopupWindow = () => {
         let addButton = document.querySelector('.add-list-item');
         addButton.addEventListener('click', () => {
-            listPopup.style.visibility = "inherit";
+            listPopup.style.display = 'flex';
         });
         
+        popupWindowOpen = true;
     }
 
     const closePopupWindow = () => {
         let cancelButton = document.querySelector('.cancel-list');
         cancelButton.addEventListener('click', () => {
-            listPopup.style.visibility = 'hidden';
+            listPopup.style.display = 'none';
         })
+
+        popupWindowOpen = false;
     }
 
     const addListItem = () => {
@@ -37,6 +41,11 @@ const PopupMenu = (() => {
                 setInterval(() => {popupInputBox.id = 'list-name'}, 800); // change class name back     
             }
         });   
+    }
+
+    const resizeListSection = () => {
+        let listSection = document.querySelector('.list-popup');
+        listSection.style.display = 'none';
     }
 
     return {

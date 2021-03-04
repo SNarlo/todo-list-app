@@ -11,8 +11,21 @@ const createListItem = (() => {
         listContainer.className = 'list-item';
         const listTitle = document.createElement('span')
         listTitle.innerHTML = listName
-        listContainer.appendChild(listTitle);
-
+        let listTitleDiv = document.createElement('div');
+        listTitleDiv.className = 'list-title';
+        listTitleDiv.appendChild(listTitle);
+        listContainer.appendChild(listTitleDiv);
+        
+        let deleteButtonDiv = document.createElement('div');
+        deleteButtonDiv.className = 'delete-button';
+        let aWrapper = document.createElement('a');
+        let deleteIcon = document.createElement('img');
+        deleteIcon.src = '../dist/imgs/close-icon.png';
+        deleteIcon.className = 'delete-icon';
+        deleteButtonDiv.appendChild(deleteIcon);
+        deleteIcon.parentNode.insertBefore(aWrapper, deleteIcon);
+        listContainer.appendChild(deleteButtonDiv);
+        
         return listContainer
     }
 
@@ -20,6 +33,8 @@ const createListItem = (() => {
         let lists = document.querySelector('.lists');
         lists.appendChild(listContainer);
     }
+
+
     return {
         createListContainer,
         appendListContainerToLists,
