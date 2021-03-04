@@ -24,23 +24,19 @@ const PopupMenu = (() => {
     }
 
     const addListItem = () => {
-
         let addButton = document.querySelector('.add-list');
 
         addButton.addEventListener('click', () => {
             if (popupInputBox.value.length > 0) {     
-                console.log("Contents in input field");
+                let listContainer = createListItem.createListContainer(popupInputBox.value);
+                createListItem.appendListContainerToLists(listContainer);
             }
     
             if (popupInputBox.value.length < 1) {
                 popupInputBox.id = 'list-name-invalid';
                 setInterval(() => {popupInputBox.id = 'list-name'}, 800); // change class name back     
             }
-        });
-
-
-       
-        
+        });   
     }
 
     return {
