@@ -5,15 +5,24 @@
 const createListItem = (() => {
 
     const createListContainer = (listName) => {
-        const listContainer = document.createElement('div');
+     
+        const listContainer = document.createElement('button');
         listContainer.setAttribute('id', listName + '-list');
         listContainer.className = 'list-item';
-        const listHeader = document.createElement('p');
-        listHeader.innerHTML = listName;
-        listContainer.appendChild(listHeader);
+        const listTitle = document.createElement('span')
+        listTitle.innerHTML = listName
+        listContainer.appendChild(listTitle);
+
+        return listContainer
+    }
+
+    const appendListContainerToLists = (listContainer) => {
+        let lists = document.querySelector('.lists');
+        lists.appendChild(listContainer);
     }
     return {
         createListContainer,
+        appendListContainerToLists,
     }
 })();
 

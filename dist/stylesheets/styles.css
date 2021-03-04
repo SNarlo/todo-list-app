@@ -43,7 +43,7 @@ body {
     height: 90vh;
     width: 95vw;
     background-color: #FFFFFF;
-    box-shadow: -23px -23px 45px rgba(255, 255, 255, 0.7);
+    box-shadow: -23px -23px 45px rgba(13, 39, 80, 0.04);
 }
 
 .list-item-section {
@@ -175,4 +175,13 @@ body {
     justify-content: center;
     width: 100%;
     height: 90%;
+    padding-top: 10%;
+}
+
+.list-item {
+    width: 80%;
+    height: 5%;
+    font-size: 22px;
+    border: 1px solid rebeccapurple;
+    cursor:pointer;
 }
