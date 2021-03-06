@@ -13,19 +13,22 @@ const createListItem = (() => {
         listTitle.innerHTML = listName
         let listTitleDiv = document.createElement('div');
         listTitleDiv.className = 'list-title';
+
         listTitleDiv.appendChild(listTitle);
         listContainer.appendChild(listTitleDiv);
-        
+
         let deleteButtonDiv = document.createElement('div');
         deleteButtonDiv.className = 'delete-button';
+        listContainer.appendChild(deleteButtonDiv);
         let aWrapper = document.createElement('a');
         let deleteIcon = document.createElement('img');
         deleteIcon.src = '../dist/imgs/close-icon.png';
         deleteIcon.className = 'delete-icon';
+        deleteIcon.id = 'delete-' + listName + '-list';
         deleteButtonDiv.appendChild(deleteIcon);
         deleteIcon.parentNode.insertBefore(aWrapper, deleteIcon);
         listContainer.appendChild(deleteButtonDiv);
-        
+
         return listContainer
     }
 
@@ -33,11 +36,19 @@ const createListItem = (() => {
         let lists = document.querySelector('.lists');
         lists.appendChild(listContainer);
     }
+    
 
+    const deleteListItem = (buttonId) => {
+        let button = document.getElementById(buttonId);
+        button.addEventListener('click', () => {
+            console.log('dededed');
+        })
+    }
 
     return {
         createListContainer,
         appendListContainerToLists,
+        deleteListItem,
     }
 })();
 
