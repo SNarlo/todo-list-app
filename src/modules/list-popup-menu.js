@@ -5,6 +5,8 @@ import createListItem from './list-item';
  */
 const PopupMenu = (() => {
     
+    //NEED TO ADD GSAP ANIMATIONS
+
     let popupWindowOpen = false;
     const listPopup = document.querySelector('.list-popup');
     const popupInputBox = document.getElementById('list-name');
