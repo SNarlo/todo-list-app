@@ -40,7 +40,7 @@ const PopupMenu = (() => {
                 popupInputBox.value = null;
             }
     
-            if (popupInputBox.value.length < 1) {
+            else if (popupInputBox.value.length < 1) {
                 popupInputBox.id = 'list-name-invalid';
                 setInterval(() => {popupInputBox.id = 'list-name'}, 800); // change class name back     
             }
