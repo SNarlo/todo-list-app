@@ -1,7 +1,7 @@
 import createListItem from './list-item';
 
 /**
- * A pop up window for when creating a todo item
+ * A pop up window for when creating a todo lists
  */
 const PopupMenu = (() => {
     
@@ -36,18 +36,16 @@ const PopupMenu = (() => {
             if (popupInputBox.value.length > 0) {     
                 let listContainer = createListItem.createListContainer(popupInputBox.value);
                 createListItem.appendListContainerToLists(listContainer);
+                createListItem.addDeleteFeature(listContainer);
+                popupInputBox.value = null;
             }
     
             if (popupInputBox.value.length < 1) {
                 popupInputBox.id = 'list-name-invalid';
                 setInterval(() => {popupInputBox.id = 'list-name'}, 800); // change class name back     
             }
-        });   
-    }
-
-    const resizeListSection = () => {
-        let listSection = document.querySelector('.list-popup');
-        listSection.style.display = 'none';
+        });  
+        
     }
 
     return {

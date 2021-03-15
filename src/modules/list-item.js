@@ -38,17 +38,18 @@ const createListItem = (() => {
     }
     
 
-    const deleteListItem = (buttonId) => {
-        let button = document.getElementById(buttonId);
-        button.addEventListener('click', () => {
-            console.log('dededed');
-        })
+    const addDeleteFeature = (listContainer) => {
+        
+        let deleteButton = listContainer.childNodes[1];
+        deleteButton.addEventListener('click', () => {
+            listContainer.remove();
+        })    
     }
 
     return {
         createListContainer,
         appendListContainerToLists,
-        deleteListItem,
+        addDeleteFeature,
     }
 })();
 
