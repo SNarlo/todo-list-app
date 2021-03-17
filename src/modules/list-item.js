@@ -4,8 +4,33 @@
 
 const createListItem = (() => {
 
-    const createListContainer = (listName) => {
-     
+    const database = firebase.database();
+    const rootRef = database.ref('lists');
+
+
+    const addListToDatabse = (list) => {
+        rootRef.child(list + '-list').set({
+             list_name: list,
+             list_objects: {
+             },
+         })
+     }
+
+     const renderExistingLists = () => {
+        rootRef.orderByKey().on('value', snapshot => {
+            snapshot.forEach(element => {
+                let container = createListContainer(element.val()['list_name']);
+                appendListContainerToLists(container);
+                addDeleteFeature(container);
+            });
+        })
+     }
+
+    // Need to make this so its added to the db first and queried to render it 
+    // same for deleting items. When the site starts the render function runs and 
+    // render all the lists
+    const createListContainer = (listName) => { 
+
         const listContainer = document.createElement('button');
         listContainer.setAttribute('id', listName + '-list');
         listContainer.className = 'list-item';
@@ -36,20 +61,21 @@ const createListItem = (() => {
         let lists = document.querySelector('.lists');
         lists.appendChild(listContainer);
     }
-    
 
     const addDeleteFeature = (listContainer) => {
-        
         let deleteButton = listContainer.childNodes[1];
         deleteButton.addEventListener('click', () => {
             listContainer.remove();
         })    
     }
 
+
     return {
         createListContainer,
         appendListContainerToLists,
+        addListToDatabse,
         addDeleteFeature,
+        renderExistingLists,
     }
 })();
 

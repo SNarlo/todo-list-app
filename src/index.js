@@ -8,4 +8,5 @@ function init() {
   PopupMenu.openPopupWindow();
   PopupMenu.closePopupWindow();
   PopupMenu.addListItem();
+  createListItem.renderExistingLists();
 }

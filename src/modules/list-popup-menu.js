@@ -34,6 +34,7 @@ const PopupMenu = (() => {
 
         addButton.addEventListener('click', () => {
             if (popupInputBox.value.length > 0) {     
+                createListItem.addListToDatabse(popupInputBox.value);
                 let listContainer = createListItem.createListContainer(popupInputBox.value);
                 createListItem.appendListContainerToLists(listContainer);
                 createListItem.addDeleteFeature(listContainer);
