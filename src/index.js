@@ -4,9 +4,10 @@ import createListItem from './modules/list-item'
 init();
 
 function init() {
-  //List logic
+  //Popup logic
   PopupMenu.openPopupWindow();
   PopupMenu.closePopupWindow();
   PopupMenu.addListItem();
+  //List item logic
   createListItem.renderExistingLists();
 }

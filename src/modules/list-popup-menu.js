@@ -5,11 +5,15 @@ import createListItem from './list-item';
  */
 const PopupMenu = (() => {
     
+    
     //NEED TO ADD GSAP ANIMATIONS
 
     let popupWindowOpen = false;
     const listPopup = document.querySelector('.list-popup');
     const popupInputBox = document.getElementById('list-name');
+    const database = firebase.database();
+    const rootRef = database.ref('/lists/');
+    
 
     const openPopupWindow = () => {
         let addButton = document.querySelector('.add-list-item');
@@ -31,13 +35,13 @@ const PopupMenu = (() => {
 
     const addListItem = () => {
         let addButton = document.querySelector('.add-list');
-
         addButton.addEventListener('click', () => {
-            if (popupInputBox.value.length > 0) {     
-                createListItem.addListToDatabse(popupInputBox.value);
-                let listContainer = createListItem.createListContainer(popupInputBox.value);
+            if (popupInputBox.value.length > 0) {  
+                const autoId = rootRef.push().key; // Creates distinct id's   
+                createListItem.addListToDatabase(popupInputBox.value, autoId);
+                let listContainer = createListItem.createListContainer(popupInputBox.value, autoId);
                 createListItem.appendListContainerToLists(listContainer);
-                createListItem.addDeleteFeature(listContainer);
+                createListItem.deleteList(listContainer);
                 popupInputBox.value = null;
             }
     
