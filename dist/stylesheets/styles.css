@@ -3,6 +3,11 @@
     src: url(../fonts/NeueMontreal-Light.otf)
 }
 
+@font-face {
+    font-family: montserrat-light;
+    src: url(../fonts/Montserrat-ExtraLight.ttf)
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -80,10 +85,27 @@ body {
     align-items: center;
 }
 
-.list-items-board {
+.todo-items-parent {
     display: flex;
-    padding: 5px;
+    padding: 2.5%;
     height: 100%;
+}
+
+.todo-items-board {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.todo-item {
+    height: 20px;
+    width: 99%;
+    border-radius: 15px;
+    border: 2px solid black;
+    margin-bottom: 2em;
+    box-shadow: 4px -4px rgba(0, 0, 0, 0.2);
 }
 
 .list-popup {

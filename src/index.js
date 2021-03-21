@@ -1,5 +1,6 @@
 import PopupMenu from './modules/list-popup-menu';
-import createListItem from './modules/list-item'
+import createListItem from './modules/list-item';
+import todoItemAddButton from './modules/todo-item-addition';
 
 init();
 
@@ -11,4 +12,6 @@ function init() {
   //List item logic
   createListItem.renderExistingLists();
 
+  //Todo item logic
+  todoItemAddButton.todoItemPopup();
 }
