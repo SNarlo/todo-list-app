@@ -12,7 +12,7 @@ const createListItem = (() => {
              list_name: listName,
              list_objects: {
              },
-         })
+         });
     }
 
     const deleteListFromDatabase = (listId) => {
@@ -20,7 +20,7 @@ const createListItem = (() => {
     }
 
     const renderExistingLists = () => {
-        rootRef.orderByKey().on('value', snapshot => {
+        rootRef.once('value', snapshot => {
             snapshot.forEach(element => {
                 let container = createListContainer(element.val()['list_name'], element.key);
                 appendListContainerToLists(container);
@@ -69,7 +69,6 @@ const createListItem = (() => {
         })    
     }
 
-    
     return {
         createListContainer,
         appendListContainerToLists,
