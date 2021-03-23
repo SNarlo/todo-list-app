@@ -10,8 +10,7 @@ function init() {
   PopupMenu.closePopupWindow();
   PopupMenu.addListItem();
   //List item logic
-  createListItem.renderExistingLists();
-
+  createListItem.listLogic();
   //Todo item logic
   todoItemAddButton.todoItemPopup();
 }

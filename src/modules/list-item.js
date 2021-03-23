@@ -1,11 +1,14 @@
 /**
  * A List item is a list whoich holds to do items
  */
-
 const createListItem = (() => {
 
     const database = firebase.database();
     const rootRef = database.ref('lists');
+
+    const listLogic = () => {
+        renderExistingLists();
+    }
     
     const addListToDatabase = (listName, listId) => {
         rootRef.child(listId).set({
@@ -24,10 +27,21 @@ const createListItem = (() => {
             snapshot.forEach(element => {
                 let container = createListContainer(element.val()['list_name'], element.key);
                 appendListContainerToLists(container);
+
                 deleteList(container);
             });
         });
     }
+
+    const allowListItemToBeActive = (listContainer) => {
+        let dbKey = listContainer.id;
+        let listName = rootRef.child(dbKey).get('list_name')
+
+        console.log(listName);
+
+        let listNameSection = document.querySelector('.current-list-item');
+
+    } 
 
     const createListContainer = (listName, listId) => { 
         const listContainer = document.createElement('button');
@@ -53,6 +67,8 @@ const createListItem = (() => {
         deleteIcon.parentNode.insertBefore(aWrapper, deleteIcon);
         listContainer.appendChild(deleteButtonDiv);
 
+        allowListItemToBeActive(listContainer);
+
         return listContainer
     }
 
@@ -70,6 +86,7 @@ const createListItem = (() => {
     }
 
     return {
+        listLogic,
         createListContainer,
         appendListContainerToLists,
         addListToDatabase,
