@@ -4,6 +4,11 @@
 }
 
 @font-face {
+    font-family: neue-bold;
+    src: url(../fonts/NeueMontreal-Bold.otf)
+}
+
+@font-face {
     font-family: montserrat-light;
     src: url(../fonts/Montserrat-ExtraLight.ttf)
 }
@@ -101,10 +106,12 @@ body {
     margin-left: 1%;
 }
 
-.current-list-item {
-    font-size: 30px;
-    height: 2em;
-    width: 15em;
+#current-list {
+    font-size: 2.5em;
+    font-family: neue-bold;
+    vertical-align: middle;
+    text-align: center;
+    width: 10em;
 }
 
 .list-popup {

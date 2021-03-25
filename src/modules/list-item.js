@@ -34,13 +34,13 @@ const createListItem = (() => {
     }
 
     const allowListItemToBeActive = (listContainer) => {
-        let dbKey = listContainer.id;
-        let listName = rootRef.child(dbKey).get('list_name')
+        let listTitleDiv = listContainer.querySelector('.list-title');
+        let listName = listTitleDiv.querySelector('span').innerHTML;
+        let currentListSelectedPreview = document.querySelector('#current-list')
 
-        console.log(listName);
-
-        let listNameSection = document.querySelector('.current-list-item');
-
+        listContainer.addEventListener('click', () => {
+            currentListSelectedPreview.textContent = listName;
+        })
     } 
 
     const createListContainer = (listName, listId) => { 
@@ -67,6 +67,7 @@ const createListItem = (() => {
         deleteIcon.parentNode.insertBefore(aWrapper, deleteIcon);
         listContainer.appendChild(deleteButtonDiv);
 
+        // Adding the functionality for it to be able to be selected and shown
         allowListItemToBeActive(listContainer);
 
         return listContainer
