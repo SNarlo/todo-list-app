@@ -2,7 +2,32 @@
  * This is a todo item within a particular list
  */
 
+const todoItemDataBaseFunctions = ( () => {
+    const database = firebase.database();
+    const rootRef = database.ref('todo-items');
+
+    const addTodoItemsToDb = (itemDescription, itemId, dueDate, parentList) => {
+        rootRef.child(itemId).set({
+            id: itemId,
+            item_description: itemDescription,
+            due_date: dueDate,
+            parent_list: parentList,
+        });
+    }
+
+    return {
+        addTodoItemsToDb,
+    }
+})();
+
+
 const createTodoItem = (() => {
+
+    const TodoItemObjectLogic = () => {
+        let container = createTodoItemContainer();
+        addTodoItemToBoard(container);
+    }
+
 
     const createTodoItemContainer = () => {
         const container = document.createElement('div');
@@ -16,17 +41,13 @@ const createTodoItem = (() => {
         return container;
     }
 
-    const addTodoItemToBoard = () => {
+    const addTodoItemToBoard = (todoItemContainer) => {
         let todoItemBoard = document.querySelector('.todo-items-board');
-        
-        let item = createTodoItemContainer();
-
-        todoItemBoard.appendChild(item);
+        todoItemBoard.appendChild(todoItemContainer);
     }
 
     return {
-        createTodoItemContainer,
-        addTodoItemToBoard,
+        TodoItemObjectLogic,
     }
 
 })();

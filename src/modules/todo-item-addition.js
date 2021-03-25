@@ -7,7 +7,9 @@ import createTodoItem from './todo-item.js';
 const todoItemAddButton = (() => {
     const todoItemPopup = () => {
         let addButton = document.querySelector('.add-todo-item');
-        addButton.addEventListener('click', createTodoItem.addTodoItemToBoard());
+        addButton.addEventListener('click', () => {
+            createTodoItem.TodoItemObjectLogic();
+        });
     }
 
     return {
@@ -15,4 +17,4 @@ const todoItemAddButton = (() => {
     }
 })();
 
-export default todoItemAddButton
+export default todoItemAddButton;

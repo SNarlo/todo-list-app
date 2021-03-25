@@ -12,9 +12,8 @@ const createListItem = (() => {
     
     const addListToDatabase = (listName, listId) => {
         rootRef.child(listId).set({
-             list_name: listName,
-             list_objects: {
-             },
+            id: listId,
+            list_name: listName,
          });
     }
 
