@@ -14,8 +14,8 @@
     "webpack": "^5.28.0",
     "webpack-cli": "^4.5.0"
   },
-  "browser":{
+  "browser": {
     "child_process": false
-    },
+  },
   "dependencies": {}
 }

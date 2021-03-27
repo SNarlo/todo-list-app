@@ -6,6 +6,7 @@ module.exports = {
     filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
+  mode: 'development',
   resolve: {
     fallback: {
       "path": require.resolve("path-browserify"),
@@ -25,6 +26,7 @@ module.exports = {
       "querystring": false,
       "os": false,
       "constants": false,
+      "assert": false,
     }
   },
 };
