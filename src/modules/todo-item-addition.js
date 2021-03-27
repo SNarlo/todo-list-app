@@ -21,7 +21,6 @@ const todoItemAddButton = (() => {
         });
 
         window.addEventListener('click', (event) => {
-            console.log(target)
             if (event.target == modalPopupMenu) {
                 modalPopupMenu.style.display = 'none';
             }
