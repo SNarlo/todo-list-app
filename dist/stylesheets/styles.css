@@ -23,8 +23,6 @@ body {
     background-color: #E9EAE9;
 }
 
-/* NON DOM RENDERED ELEMENTS */
-
 .main-header {
     position: absolute;
     left: 5%;
@@ -54,6 +52,41 @@ body {
     width: 95vw;
     background-color: #FFFFFF;
     box-shadow: -23px -23px 45px rgba(13, 39, 80, 0.04);
+}
+
+.modal-todo-item-form {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.4);
+}
+
+.modal-form-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close-form {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close-form:hover,
+.close-form:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .list-item-section {

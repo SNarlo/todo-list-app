@@ -12,5 +12,5 @@ function init() {
   //List item logic
   createListItem.listLogic();
   //Todo item logic
-  todoItemAddButton.todoItemPopup();
+  todoItemAddButton.todoItemPopupLogic();
 }
