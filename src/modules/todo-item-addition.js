@@ -1,4 +1,3 @@
-import { node } from 'webpack';
 import createTodoItem from './todo-item.js';
 
 /**
