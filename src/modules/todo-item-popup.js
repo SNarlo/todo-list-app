@@ -4,7 +4,7 @@
 const submitTodoItem = (() => {
     const database = firebase.database();
     const rootRef = database.ref('todo-items');
-    const formWindow = document.getElementById('modal-form');
+    const formWindow = document.querySelector('.modal-todo-item-form');
     const submitFormButton = document.querySelector('.submit-todo-item');
     const itemDescription = document.querySelector('#item-desc');
     const dueDate = document.querySelector('#todo-due');
@@ -15,11 +15,13 @@ const submitTodoItem = (() => {
         submitFormButton.addEventListener('click', () => {
             const autoId = rootRef.push().key;
             addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, priority.value, parent);
+            
+            // Reset the form
+            itemDescription.value = '';
+            dueDate.value = '';
+            priority.value = '';
+            formWindow.style.display = 'none';
         })
-        itemDescription.value = '';
-        dueDate.value = '';
-        priority.value = '';
-        formWindow.style.display = 'none';
     }
     
     const addTodoItemsToDb = (itemId, todoDescription, todoDueDate, todoItemPriority, parentList) => {
