@@ -1,4 +1,3 @@
-import createTodoItem from './todo-item.js';
 
 /**
  * The logic for the add todo item button at the top

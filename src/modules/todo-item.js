@@ -2,23 +2,24 @@
  * This is a todo item within a particular list
  */
 
-const todoItemDataBaseFunctions = ( () => {
-    const database = firebase.database();
-    const rootRef = database.ref('todo-items');
+// const todoItemDataBaseFunctions = ( () => {
+//     const database = firebase.database();
+//     const rootRef = database.ref('todo-items');
 
-    const addTodoItemsToDb = (itemDescription, itemId, dueDate, parentList) => {
-        rootRef.child(itemId).set({
-            id: itemId,
-            item_description: itemDescription,
-            due_date: dueDate,
-            parent_list: parentList,
-        });
-    }
+//     const addTodoItemsToDb = (itemDescription, itemId, dueDate, priority ,parentList,) => {
+//         rootRef.child(itemId).set({
+//             id: itemId,
+//             item_description: itemDescription,
+//             due_date: dueDate,
+//             priority: priority,
+//             parent_list: parentList,
+//         });
+//     }
 
-    return {
-        addTodoItemsToDb,
-    }
-})();
+//     return {
+//         addTodoItemsToDb,
+//     }
+// })();
 
 
 const createTodoItem = (() => {
