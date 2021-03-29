@@ -9,6 +9,16 @@
 }
 
 @font-face {
+    font-family: neue-regular;
+    src: url(../fonts/NeueMontreal-Regular.otf)
+}
+
+@font-face {
+    font-family: neue-medium;
+    src: url(../fonts/NeueMontreal-Medium.otf)
+}
+
+@font-face {
     font-family: montserrat-light;
     src: url(../fonts/Montserrat-ExtraLight.ttf)
 }
@@ -54,6 +64,8 @@ body {
     box-shadow: -23px -23px 45px rgba(13, 39, 80, 0.04);
 }
 
+/* TODO FORM */
+
 .modal-todo-item-form {
     display: none;
     position: fixed;
@@ -68,11 +80,59 @@ body {
 }
 
 .modal-form-content {
-    background-color: #fefefe;
-    margin: 15% auto;
+    background-color: white;
+    margin-left: 15%;
+    margin-top: 12%;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
+    width: 50%;
+}
+
+#todo-item-form-header {
+    font-family: neue-medium;
+}
+
+.line {
+    width: 100%;
+    background-color: black;
+    height: 7px;
+}
+
+.modal-form-items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.todo-form-heading {
+    margin-top: 1.5em;
+    font-family: neue-light;
+    font-weight: bolder;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.todo-form-input {
+    font-size: 20px;
+    font-family: neue-light;
+}
+
+.submit-todo-item {
+    font-size: 22px;
+    background-color: white;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border: none;
+    outline: none;
+    cursor: pointer;
+    margin-top: 2em;
+    margin-bottom: 0.5em;
+    height: 42px;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.submit-todo-item:active {
+    transform: translateY(2px);
 }
 
 .close-form {

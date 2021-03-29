@@ -41,8 +41,21 @@
         <div class="modal-form-content">
           <span class="close-form">&times;</span>
           <h1 id="todo-item-form-header">Add Todo Item</h1>
-          <p>Some text in the menu</p>
-          </span>
+          <div class="line"></div>
+          <div class="modal-form-items">
+            <h3 class="todo-form-heading">What do you have to do?</h3>
+            <input class="todo-form-input" type="text" name="item-desc" id="item-desc" class="todo-name">
+            <h3 class="todo-form-heading">When is it due?</h3>
+            <input class="todo-form-input" type="datetime-local" name="todo-due" id="todo-due">
+            <h3 class="todo-form-heading">Priority</h3>
+            <label for="priority"></label>
+            <select name="priority" id="priority">
+              <option value="!">!</option>
+              <option value="!!">! !</option>
+              <option value="!!!">! ! !</option>
+            </select>
+            <button class="submit-todo-item">Submit</button>
+          </div>
         </div>
       </div>
       <div class="list-item-section">
@@ -50,12 +63,11 @@
           <div class="items-in-top-list">
             <a class="add-todo-item"><img src="../dist/imgs/plus-icon.png" alt=""></a>
             <h2 id="current-list"></h2>
-            <button id="all-items">All Items</button>
           </div>
         </div>
         <div class="todo-items-parent">
           <div class="todo-items-board">
-            <p>add sort option</p>
+            <!-- <p>add sort option</p> -->
 
           </div>
         </div>
