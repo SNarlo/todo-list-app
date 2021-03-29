@@ -113,8 +113,19 @@ body {
 }
 
 .todo-form-input {
-    font-size: 20px;
+    font-size: 25px;
     font-family: neue-light;
+    height: 1.5em;
+    border: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+#priority {
+    font-size: 25px;
+    font-family: neue-light;
+    height: 1.5em; 
+    border: none;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 .submit-todo-item {
