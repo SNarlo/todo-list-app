@@ -1,3 +1,5 @@
+import todoItem from './todo-item'; 
+
 /**
  * A module to handle the todo item modular popup
  */
@@ -15,6 +17,8 @@ const submitTodoItem = (() => {
         submitFormButton.addEventListener('click', () => {
             const autoId = rootRef.push().key;
             addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, priority.value, parent);
+            
+            todoItem.createAndAddToDo(itemDescription.value, dueDate.value, priority.value);
             
             // Reset the form
             itemDescription.value = '';
