@@ -106,7 +106,7 @@ body {
 
 .todo-form-heading {
     margin-top: 1.5em;
-    font-family: neue-light;
+    font-family: neue-regular;
     font-weight: bolder;
     font-size: 24px;
     margin-bottom: 10px;
@@ -118,6 +118,7 @@ body {
     height: 1.5em;
     border: none;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    outline: black;
 }
 
 #priority {
@@ -167,7 +168,6 @@ body {
     height: inherit;
     position: absolute;
     left: 0;
-
 }
 
 .item-top-section {
@@ -201,12 +201,14 @@ body {
     overflow-y: scroll;
 }
 
+/* TODO ITEM */
+
 .todo-item {
     display: flex;
     flex-direction: row;
     align-items: center;
     height: 32px;
-    width: 98%;
+    width: 95%;
     border-radius: 15px;
     margin-bottom: 2em;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
@@ -214,6 +216,55 @@ body {
     padding-left: 1%;
     padding-right: 1%;
 }
+
+/* CHECKMARK */
+
+.todo-item input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background-color: #eee;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.todo-item:hover input ~ .checkmark {
+    background-color: #ccc;
+  }
+  
+
+#description-container {
+    width: 70%;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-right: 2px solid whitesmoke;
+}
+
+#date-container {
+    text-align: center;
+    width: 20%;
+    border-right: 2px solid whitesmoke;
+}
+
+#priority-container {
+    text-align: center;
+    width: 10%;
+}
+
+#priority-container p, #date-container p, #description-container p {
+    font-family: neue-regular;
+}
+
+/* LIST DISPLAY */
 
 #current-list {
     font-size: 2.5em;

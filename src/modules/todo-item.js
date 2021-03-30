@@ -44,9 +44,14 @@ const todoItem = (() => {
         container.setAttribute('class', 'todo-item');
 
         const radioButton = document.createElement('input');
-        radioButton.type = 'radio';
+        radioButton.className = 'check-box';
+        radioButton.type = 'checkbox';
+
+        const spanCheckbox = document.createElement('span');
+        spanCheckbox.className = 'checkmark';
 
         container.appendChild(radioButton);
+        container.appendChild(spanCheckbox);
 
         return container;
     }
