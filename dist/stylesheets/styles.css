@@ -30,6 +30,20 @@
     letter-spacing: 0.1em;
 }
 
+/* To hide scroll bars which show when overflow y is added */
+/* /////// */
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 7px;
+}
+  
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, .5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+/* /////// */
+
 body {
     background-color: #E9EAE9;
 }
@@ -210,21 +224,23 @@ body {
     height: 32px;
     width: 95%;
     border-radius: 15px;
-    margin-bottom: 2em;
-    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+    margin-bottom: 1.7em;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 0.3em;
     margin-left: 1%;
     padding-left: 1%;
     padding-right: 1%;
 }
 
-/* CHECKMARK */
-
+/* CHECKBOX */
+/* ///////////  */
 .todo-item input {
     position: absolute;
     opacity: 0;
+    z-index: 1;
     cursor: pointer;
-    height: 0;
-    width: 0;
+    height: 20px;
+    width: 20px;
 }
 
 .checkmark {
@@ -239,8 +255,34 @@ body {
 
 .todo-item:hover input ~ .checkmark {
     background-color: #ccc;
-  }
-  
+}
+
+.todo-item input:checked ~ .checkmark {
+    background-color: black;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.todo-item input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.todo-item .checkmark:after {
+    left: 6px;
+    top: 3px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+/* ///////////  */
 
 #description-container {
     width: 70%;
