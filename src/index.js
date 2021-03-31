@@ -13,6 +13,7 @@ function init() {
   PopupMenu.addListItem();
   //List item logic
   createListItem.listLogic();
+  createListItem.createGeneralList();
   //Todo item logic
   todoItemAddButton.todoItemPopupLogic();
   submitTodoItem.submitForm();

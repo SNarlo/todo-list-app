@@ -9,6 +9,13 @@ const createListItem = (() => {
     const listLogic = () => {
         renderExistingLists();
     }
+
+    const createGeneralList = () => {
+        let container = createListContainer('General', 'general-list');
+        addListToDatabase('General', 'general-list');
+        allowListItemToBeActive(container);
+
+    }
     
     const addListToDatabase = (listName, listId) => {
         rootRef.child(listId).set({
@@ -87,6 +94,7 @@ const createListItem = (() => {
 
     return {
         listLogic,
+        createGeneralList,
         createListContainer,
         appendListContainerToLists,
         addListToDatabase,
