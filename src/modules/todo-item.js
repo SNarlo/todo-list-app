@@ -38,7 +38,6 @@ const todoItem = (() => {
 
     }
 
-
     const createTodoItemContainer = () => {
         const container = document.createElement('div');
         container.setAttribute('class', 'todo-item');

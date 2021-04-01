@@ -1,4 +1,5 @@
 import todoItem from './todo-item'; 
+import listItemLogic from './list-item';
 
 /**
  * A module to handle the todo item modular popup
@@ -11,12 +12,11 @@ const submitTodoItem = (() => {
     const itemDescription = document.querySelector('#item-desc');
     const dueDate = document.querySelector('#todo-due');
     const priority = document.querySelector('#priority');
-    const parent = "General"
 
     const submitForm = () => {
         submitFormButton.addEventListener('click', () => {
             const autoId = rootRef.push().key;
-            addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, priority.value, parent);
+            addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, priority.value, listItemLogic.returnActiveList());
             todoItem.createAndAddToDo(itemDescription.value, dueDate.value, priority.value);
             
             // Reset the form

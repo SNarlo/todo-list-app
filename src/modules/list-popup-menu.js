@@ -1,4 +1,4 @@
-import createListItem from './list-item';
+import listItemLogic from './list-item';
 
 /**
  * A pop up window for when creating a todo lists
@@ -38,10 +38,11 @@ const PopupMenu = (() => {
         addButton.addEventListener('click', () => {
             if (popupInputBox.value.length > 0) {  
                 const autoId = rootRef.push().key; // Creates distinct id's   
-                createListItem.addListToDatabase(popupInputBox.value, autoId);
-                let listContainer = createListItem.createListContainer(popupInputBox.value, autoId);
-                createListItem.appendListContainerToLists(listContainer);
-                createListItem.deleteList(listContainer);
+                listItemLogic.addListToDatabase(popupInputBox.value, autoId);
+                let listContainer = listItemLogic.createListContainer(popupInputBox.value, autoId);
+                listItemLogic.appendListContainerToLists(listContainer);
+                listItemLogic.changeActiveList(autoId) // Allow the user to select a list
+                listItemLogic.deleteList(listContainer);
                 popupInputBox.value = null;
             }
     

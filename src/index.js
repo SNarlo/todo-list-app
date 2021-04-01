@@ -1,5 +1,5 @@
 import PopupMenu from './modules/list-popup-menu';
-import createListItem from './modules/list-item';
+import listItemLogic from './modules/list-item';
 import todoItemAddButton from './modules/todo-item-addition-button';
 import submitTodoItem from './modules/todo-item-popup';
 
@@ -12,8 +12,8 @@ function init() {
   PopupMenu.closePopupWindow();
   PopupMenu.addListItem();
   //List item logic
-  createListItem.listLogic();
-  createListItem.createGeneralList();
+  listItemLogic.listLogic();
+  listItemLogic.createGeneralList();
   //Todo item logic
   todoItemAddButton.todoItemPopupLogic();
   submitTodoItem.submitForm();

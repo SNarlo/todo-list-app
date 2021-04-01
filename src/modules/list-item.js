@@ -1,22 +1,35 @@
 /**
  * A List item is a list whoich holds to do items
  */
-const createListItem = (() => {
+const listItemLogic = (() => {
 
     const database = firebase.database();
     const rootRef = database.ref('lists');
+    let activeList = "all-items-list";
+
 
     const listLogic = () => {
         renderExistingLists();
     }
 
     const createGeneralList = () => {
-        let container = createListContainer('General', 'general-list');
-        addListToDatabase('General', 'general-list');
+        let container = createListContainer('All Items', 'all-items-list');
+        addListToDatabase('All Items', 'all-items-list');
         allowListItemToBeActive(container);
-
     }
     
+    const changeActiveList = (listId) => {
+        let list = document.getElementById(listId);
+        list.addEventListener('click', () => {
+            activeList = listId;
+            console.log(activeList);
+        })
+    }
+
+    const returnActiveList = () => {
+        return activeList
+    }
+
     const addListToDatabase = (listName, listId) => {
         rootRef.child(listId).set({
             id: listId,
@@ -33,7 +46,7 @@ const createListItem = (() => {
             snapshot.forEach(element => {
                 let container = createListContainer(element.val()['list_name'], element.key);
                 appendListContainerToLists(container);
-
+                changeActiveList(element.key);
                 deleteList(container);
             });
         });
@@ -93,6 +106,8 @@ const createListItem = (() => {
     }
 
     return {
+        changeActiveList,
+        returnActiveList,
         listLogic,
         createGeneralList,
         createListContainer,
@@ -103,6 +118,6 @@ const createListItem = (() => {
     }
 })();
 
-export default createListItem;
+export default listItemLogic;
 
 
