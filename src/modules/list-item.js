@@ -1,3 +1,5 @@
+import todoItem from './todo-item'
+
 /**
  * A List item is a list whoich holds to do items
  */
@@ -22,11 +24,14 @@ const listItemLogic = (() => {
         let list = document.getElementById(listId);
         list.addEventListener('click', () => {
             activeList = listId;
-            console.log(activeList);
+            // Change the todo Items
+            todoItem.clearTodoItemBoard();
+            todoItem.renderTodoItemsToBoardFromDB(activeList);
         })
+        
     }
 
-    const returnActiveList = () => {
+    const getActiveList = () => {
         return activeList
     }
 
@@ -107,7 +112,7 @@ const listItemLogic = (() => {
 
     return {
         changeActiveList,
-        returnActiveList,
+        getActiveList,
         listLogic,
         createGeneralList,
         createListContainer,

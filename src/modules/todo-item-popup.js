@@ -16,7 +16,7 @@ const submitTodoItem = (() => {
     const submitForm = () => {
         submitFormButton.addEventListener('click', () => {
             const autoId = rootRef.push().key;
-            addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, priority.value, listItemLogic.returnActiveList());
+            addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, priority.value, listItemLogic.getActiveList());
             todoItem.createAndAddToDo(itemDescription.value, dueDate.value, priority.value);
             
             // Reset the form

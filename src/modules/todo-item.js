@@ -1,8 +1,14 @@
+import listItemLogic from './list-item'
+
 /**
  * This is a todo item within a particular list
  */
 
 const todoItem = (() => {
+
+    const database = firebase.database();
+    const rootRefTodoItems = database.ref('todo-items');
+    const rootRefLists = database.ref('lists');
 
     const TodoItemObjectLogic = () => {
         let container = createTodoItemContainer();
@@ -60,9 +66,32 @@ const todoItem = (() => {
         todoItemBoard.appendChild(todoItemContainer);
     }
 
+    const clearTodoItemBoard = () => {
+        let todoItems = Array.from(document.getElementsByClassName('todo-item'));
+        todoItems.forEach(element => {
+            element.remove();
+        });
+    }
+
+    const renderTodoItemsToBoardFromDB = (activeList) => {
+        rootRefTodoItems.once('value', snapshot => {
+            snapshot.forEach(element => {
+                if (activeList == 'all-items-list') {
+                    createAndAddToDo(element.val()['item_description'], element.val()['due_date'], element.val()['priority']);
+                    return;
+                }
+                if (element.val()['parent_list'] == activeList) {
+                    createAndAddToDo(element.val()['item_description'], element.val()['due_date'], element.val()['priority']);
+                }
+            });
+        });
+    }
+
     return {
         createAndAddToDo,
         TodoItemObjectLogic,
+        clearTodoItemBoard,
+        renderTodoItemsToBoardFromDB,
     }
 
 })();
