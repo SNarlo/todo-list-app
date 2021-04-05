@@ -284,6 +284,7 @@ body {
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
 }
+
 /* ///////////  */
 
 #description-container {
@@ -302,6 +303,12 @@ body {
 #priority-container {
     text-align: center;
     width: 10%;
+}
+
+.delete-todo-item {
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 1%;
 }
 
 #priority-container p, #date-container p, #description-container p {
@@ -434,9 +441,8 @@ body {
     width: 85%;
 }
 
-.delete-button-div {
-    display: flex;
-    justify-content: start;
+.delete-button {
+    display: block;
 }
 
 .delete-icon {

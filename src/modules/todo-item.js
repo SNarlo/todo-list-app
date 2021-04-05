@@ -35,10 +35,15 @@ const todoItem = (() => {
         const priorityValue = document.createElement('p');
         priorityValue.textContent = priority;
         priorityContainer.appendChild(priorityValue);
+
+        const deleteTodoItem = document.createElement('span');
+        deleteTodoItem.className = 'delete-todo-item';
+        deleteTodoItem.innerHTML = '&times;'
         
         parentContainer.appendChild(itemDescriptionContainer);
         parentContainer.appendChild(dueDateContainer);
         parentContainer.appendChild(priorityContainer);
+        parentContainer.appendChild(deleteTodoItem);
 
         addTodoItemToBoard(parentContainer);
 
@@ -64,6 +69,35 @@ const todoItem = (() => {
     const addTodoItemToBoard = (todoItemContainer) => {
         let todoItemBoard = document.querySelector('.todo-items-board');
         todoItemBoard.appendChild(todoItemContainer);
+        allowDeleteTodoItem(todoItemContainer);
+    }
+
+    const allowDeleteTodoItem = (item) => {
+        let deleteButton = item.querySelector('.delete-todo-item');
+        let itemDescription = item.querySelector('#description-container');
+        let descriptionValue = itemDescription.querySelector('p').innerHTML;
+        deleteButton.addEventListener('click', () => {
+            item.remove();
+            deleteItemFromDatabase(descriptionValue);
+        })    
+    }
+
+    const deleteItemFromDatabase = (itemDescription) => { 
+        rootRefTodoItems.once('value', snapshot => {
+            snapshot.forEach(element => {
+                if (element.val()['item_description'] == itemDescription) {
+                    rootRefTodoItems.child(element.val()['id']).remove();
+                }
+            })
+        })
+    }
+
+    const deleteTodoItemOnListDelete = (list) => { // need to do this
+        rootRef.child(listId).remove();
+    }
+
+    const completedTodoItem = () => { // need to do this 
+        
     }
 
     const clearTodoItemBoard = () => {
