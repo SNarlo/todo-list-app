@@ -114,8 +114,7 @@ const listItemLogic = (() => {
         deleteButton.addEventListener('click', () => {
             listContainer.remove();
             deleteListFromDatabase(listContainer.id);
-            todoItem.deleteTodoItemOnListDelete(listContainer.id);
-            changeActiveListOnDelete();
+            todoItem.deleteTodoItemOnListDelete(listContainer.id); // Needd to still change the active list
         })    
     }
 
