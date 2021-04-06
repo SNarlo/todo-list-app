@@ -1,4 +1,5 @@
 import listItemLogic from './list-item'
+import todoItemAddButton from './todo-item-addition-button';
 
 /**
  * This is a todo item within a particular list
@@ -12,11 +13,12 @@ const todoItem = (() => {
 
     const TodoItemObjectLogic = () => {
         let container = createTodoItemContainer();
-        addTodoItemToBoard(container);
+        addTodoItemToBoard(container);        
     }
 
-    const createAndAddToDo = (description, dueDate, priority) => {
+    const createAndAddToDo = (description, dueDate, priority, autoId) => {
         const parentContainer = createTodoItemContainer();
+        parentContainer.id = autoId;
 
         const itemDescriptionContainer = document.createElement('span');
         itemDescriptionContainer.id = 'description-container';
@@ -74,30 +76,49 @@ const todoItem = (() => {
 
     const allowDeleteTodoItem = (item) => {
         let deleteButton = item.querySelector('.delete-todo-item');
-        let itemDescription = item.querySelector('#description-container');
-        let descriptionValue = itemDescription.querySelector('p').innerHTML;
+        let itemId = item.id;
         deleteButton.addEventListener('click', () => {
             item.remove();
-            deleteItemFromDatabase(descriptionValue);
+            deleteItemFromDatabase(itemId);
         })    
     }
 
-    const deleteItemFromDatabase = (itemDescription) => { 
+    const deleteItemFromDatabase = (itemId) => { 
         rootRefTodoItems.once('value', snapshot => {
             snapshot.forEach(element => {
-                if (element.val()['item_description'] == itemDescription) {
+                if (element.val()['id'] == itemId) {
                     rootRefTodoItems.child(element.val()['id']).remove();
                 }
             })
         })
     }
 
-    const deleteTodoItemOnListDelete = (list) => { // need to do this
-        rootRef.child(listId).remove();
+    const deleteTodoItemOnListDelete = (listId) => { 
+        rootRefTodoItems.once('value', snapshot => {
+            snapshot.forEach(element => {
+                if (element.val()['parent_list'] == listId) {
+                    let itemId = element.val()['id'];
+                    let todoItem = document.getElementById(itemId);
+                    todoItem.remove()
+                    deleteItemFromDatabase(itemId);
+                } 
+            })
+        })
+    }
+
+    const todoItemPriorityOnHover = () => { // Need to do this 
+        let todoItems = Array.from(document.getElementsByClassName('todo-item'));
+        console.log(todoItems);
+        todoItems.forEach(element => {
+            console.log(element)
+            element.addEventListener('hover', () => {
+                console.log(element)
+            })
+        });
     }
 
     const completedTodoItem = () => { // need to do this 
-        
+       
     }
 
     const clearTodoItemBoard = () => {
@@ -111,11 +132,11 @@ const todoItem = (() => {
         rootRefTodoItems.once('value', snapshot => {
             snapshot.forEach(element => {
                 if (activeList == 'all-items-list') {
-                    createAndAddToDo(element.val()['item_description'], element.val()['due_date'], element.val()['priority']);
+                    createAndAddToDo(element.val()['item_description'], element.val()['due_date'], element.val()['priority'], element.val()['id']);
                     return;
                 }
                 if (element.val()['parent_list'] == activeList) {
-                    createAndAddToDo(element.val()['item_description'], element.val()['due_date'], element.val()['priority']);
+                    createAndAddToDo(element.val()['item_description'], element.val()['due_date'], element.val()['priority'], element.val()['id']);
                 }
             });
         });
@@ -124,7 +145,9 @@ const todoItem = (() => {
     return {
         createAndAddToDo,
         TodoItemObjectLogic,
+        todoItemPriorityOnHover,
         clearTodoItemBoard,
+        deleteTodoItemOnListDelete,
         renderTodoItemsToBoardFromDB,
     }
 

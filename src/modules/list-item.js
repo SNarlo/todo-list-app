@@ -22,14 +22,19 @@ const listItemLogic = (() => {
         allowListItemToBeActive(container);
     }
     
-    const changeActiveList = (listId) => {
+    const changeActiveListOnClick = (listId) => {
         let list = document.getElementById(listId);
         list.addEventListener('click', () => {
             activeList = listId;
             // Change the todo Items
             todoItem.clearTodoItemBoard();
             todoItem.renderTodoItemsToBoardFromDB(activeList);
-        })
+        })   
+    }
+
+    const changeActiveListOnDelete = () => { // need to chnage this to
+        todoItem.clearTodoItemBoard();
+        activeList = 'all-items-list';
         
     }
 
@@ -53,7 +58,7 @@ const listItemLogic = (() => {
             snapshot.forEach(element => {
                 let container = createListContainer(element.val()['list_name'], element.key);
                 appendListContainerToLists(container);
-                changeActiveList(element.key);
+                changeActiveListOnClick(element.key);
                 deleteList(container);
             });
         });
@@ -109,11 +114,13 @@ const listItemLogic = (() => {
         deleteButton.addEventListener('click', () => {
             listContainer.remove();
             deleteListFromDatabase(listContainer.id);
+            todoItem.deleteTodoItemOnListDelete(listContainer.id);
+            changeActiveListOnDelete();
         })    
     }
 
     return {
-        changeActiveList,
+        changeActiveList : changeActiveListOnClick,
         getActiveList,
         listLogic,
         createGeneralList,

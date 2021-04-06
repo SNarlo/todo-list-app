@@ -19,5 +19,8 @@ function init() {
   todoItemAddButton.todoItemPopupLogic();
   submitTodoItem.submitForm();
   todoItem.renderTodoItemsToBoardFromDB('all-items-list');
+
+
+  todoItem.todoItemPriorityOnHover();
   
 }
