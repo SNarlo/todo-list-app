@@ -8,6 +8,7 @@ const listItemLogic = (() => {
     const database = firebase.database();
     const rootRef = database.ref('lists');
     let activeList = "all-items-list";
+    let currentList = document.getElementById('current-list');
 
 
     const listLogic = () => {
@@ -32,10 +33,12 @@ const listItemLogic = (() => {
         })   
     }
 
-    const changeActiveListOnDelete = () => { // need to chnage this to
+    const changeActiveListOnDelete = () => {
+        activeList = 'all-items-list'
+        // Change the todo Items
         todoItem.clearTodoItemBoard();
-        activeList = 'all-items-list';
-        
+        todoItem.renderTodoItemsToBoardFromDB(activeList);
+        currentList.innerHTML = 'All Items'
     }
 
     const getActiveList = () => {
@@ -114,7 +117,9 @@ const listItemLogic = (() => {
         deleteButton.addEventListener('click', () => {
             listContainer.remove();
             deleteListFromDatabase(listContainer.id);
+            currentList.innerHTML = "All Items"
             todoItem.deleteTodoItemOnListDelete(listContainer.id); // Needd to still change the active list
+            setTimeout(changeActiveListOnDelete, 1500);
         })    
     }
 
