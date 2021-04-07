@@ -106,7 +106,11 @@ const todoItem = (() => {
         })
     }
 
-    const todoItemPriorityOnHover = (itemId, priority) => { // Need to do this 
+    const modalPopup = () => { // need to do
+
+    }
+
+    const todoItemPriorityOnHover = (itemId, priority) => {
         let todoItem = document.getElementById(itemId);
         if (priority === '!') {
             todoItem.addEventListener('mouseenter', () => {

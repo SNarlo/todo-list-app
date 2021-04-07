@@ -19,6 +19,7 @@ const listItemLogic = (() => {
         let container = document.getElementById('all-items-list')
         addListToDatabase('All Items', 'all-items-list');
         allowListItemToBeActive(container);
+        changeActiveListOnClick(container.id);
     }
     
     const changeActiveListOnClick = (listId) => {
@@ -57,10 +58,12 @@ const listItemLogic = (() => {
     const renderExistingLists = () => {
         rootRef.once('value', snapshot => {
             snapshot.forEach(element => {
-                let container = createListContainer(element.val()['list_name'], element.key);
-                appendListContainerToLists(container);
-                changeActiveListOnClick(element.key);
-                deleteList(container);
+                if (element.val()['list_name'] != 'All Items') {
+                    let container = createListContainer(element.val()['list_name'], element.key);
+                    appendListContainerToLists(container);
+                    changeActiveListOnClick(element.key);
+                    deleteList(container);
+                }
             });
         });
     }
