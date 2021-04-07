@@ -16,9 +16,7 @@ const listItemLogic = (() => {
     }
 
     const createGeneralList = () => {
-        let container = createListContainer('All Items', 'all-items-list');
-        let deleteButton = container.querySelector('.delete-button');
-        deleteButton.remove();
+        let container = document.getElementById('all-items-list')
         addListToDatabase('All Items', 'all-items-list');
         allowListItemToBeActive(container);
     }

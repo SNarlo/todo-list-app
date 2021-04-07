@@ -225,6 +225,7 @@ body {
     height: 32px;
     width: 95%;
     border-radius: 15px;
+    border: 1px solid white;
     margin-bottom: 1.7em;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
     margin-top: 0.3em;

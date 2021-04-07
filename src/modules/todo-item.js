@@ -9,11 +9,11 @@ const todoItem = (() => {
 
     const database = firebase.database();
     const rootRefTodoItems = database.ref('todo-items');
-    const rootRefLists = database.ref('lists');
 
     const TodoItemObjectLogic = () => {
         let container = createTodoItemContainer();
-        addTodoItemToBoard(container);        
+        addTodoItemToBoard(container);  
+        console.log(todoItemsArray);      
     }
 
     const createAndAddToDo = (description, dueDate, priority, autoId) => {
@@ -48,7 +48,7 @@ const todoItem = (() => {
         parentContainer.appendChild(deleteTodoItem);
 
         addTodoItemToBoard(parentContainer);
-
+        todoItemPriorityOnHover(parentContainer.id, priority);
     }
 
     const createTodoItemContainer = () => {
@@ -106,15 +106,30 @@ const todoItem = (() => {
         })
     }
 
-    const todoItemPriorityOnHover = () => { // Need to do this 
-        let todoItems = Array.from(document.getElementsByClassName('todo-item'));
-        console.log(todoItems);
-        todoItems.forEach(element => {
-            console.log(element)
-            element.addEventListener('hover', () => {
-                console.log(element)
-            })
-        });
+    const todoItemPriorityOnHover = (itemId, priority) => { // Need to do this 
+        let todoItem = document.getElementById(itemId);
+        if (priority === '!') {
+            todoItem.addEventListener('mouseenter', () => {
+                todoItem.style.border = '1px solid rgba(255, 255, 0, 0.5)';
+            });
+            todoItem.addEventListener('mouseleave', () => {
+                todoItem.style.border = '1px solid white';
+            });
+        } else if (priority === '!!') {
+            todoItem.addEventListener('mouseenter', () => {
+                todoItem.style.border = '1px solid rgba(255, 165, 0, 0.5)';
+            });
+            todoItem.addEventListener('mouseleave', () => {
+                todoItem.style.border = '1px solid white';
+            });
+        } else if (priority === '!!!') {
+            todoItem.addEventListener('mouseenter', () => {
+                todoItem.style.border = '1px solid rgba(255, 0, 0, 0.5)';
+            });
+            todoItem.addEventListener('mouseleave', () => {
+                todoItem.style.border = '1px solid white';
+            });
+        }
     }
 
     const completedTodoItem = () => { // need to do this 
