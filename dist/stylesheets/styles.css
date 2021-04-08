@@ -335,6 +335,31 @@ body {
     width: 0;
 }
 
+.input-buttons label {
+    display: inline-block;
+    background-color: white;
+    padding: 10px 20px;
+    font-family: neue-regular;
+    font-size: 16px;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+.input-buttons input[type="radio"]:checked + #low-priority-label {
+    background-color:rgba(255, 255, 0, .3);
+    border-color: rgba(255, 255, 0, 1);
+}
+
+.input-buttons input[type="radio"]:checked + #medium-priority-label {
+    background-color:rgba(255, 165, 0, .3);
+    border-color: rgba(255, 165, 0, 1);
+}
+
+.input-buttons input[type="radio"]:checked + #high-priority-label {
+    background-color:rgba(255, 0, 0, .3);
+    border-color: rgba(255, 0, 0, 1);
+}
+
 
 /* LIST DISPLAY */
 

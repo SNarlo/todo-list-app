@@ -39,7 +39,7 @@ const todoItem = (() => {
         deleteTodoItem.className = 'delete-todo-item';
         let trashCan = document.createElement('img');
         trashCan.className = 'delete-todo-item';
-        trashCan.src = '../dist/imgs/trash-can.svg';
+        trashCan.src = '../dist/imgs/trash-can.svg';  //TODO: NEED TO STOP THIS BRINGING UP MENU
         deleteTodoItem.appendChild(trashCan);
         
         parentContainer.appendChild(itemDescriptionContainer);
