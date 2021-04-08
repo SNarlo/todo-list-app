@@ -1,5 +1,3 @@
-import listItemLogic from './list-item'
-import todoItemAddButton from './todo-item-addition-button';
 
 /**
  * This is a todo item within a particular list
@@ -12,8 +10,7 @@ const todoItem = (() => {
 
     const TodoItemObjectLogic = () => {
         let container = createTodoItemContainer();
-        addTodoItemToBoard(container);  
-        console.log(todoItemsArray);      
+        addTodoItemToBoard(container);        
     }
 
     const createAndAddToDo = (description, dueDate, priority, autoId) => {
@@ -40,7 +37,10 @@ const todoItem = (() => {
 
         const deleteTodoItem = document.createElement('span');
         deleteTodoItem.className = 'delete-todo-item';
-        deleteTodoItem.innerHTML = '&times;'
+        let trashCan = document.createElement('img');
+        trashCan.className = 'delete-todo-item';
+        trashCan.src = '../dist/imgs/trash-can.svg';
+        deleteTodoItem.appendChild(trashCan);
         
         parentContainer.appendChild(itemDescriptionContainer);
         parentContainer.appendChild(dueDateContainer);
@@ -48,6 +48,7 @@ const todoItem = (() => {
         parentContainer.appendChild(deleteTodoItem);
 
         addTodoItemToBoard(parentContainer);
+        allowModalPopup(parentContainer, description, dueDate, priority); // Modal popup functionality
         todoItemPriorityOnHover(parentContainer.id, priority);
     }
 
@@ -106,29 +107,42 @@ const todoItem = (() => {
         })
     }
 
-    const modalPopup = () => { // need to do
+    const allowModalPopup = (container, description, dueDate, priority) => { // need to do
+        const popup = document.querySelector('.expanded-todo-item');
+        const itemDescription = document.getElementById('expanded-item-desc');
+        const dueDateInput = document.getElementById('expanded-todo-due');
+        const closeForm = document.getElementById('close-expanded-todo-form');
 
+        container.addEventListener('click', () => {
+            popup.style.display = 'block';
+            itemDescription.value = description;
+            dueDateInput.value = dueDate;
+        });
+
+        closeForm.addEventListener('click', () => {
+            popup.style.display = 'none';
+        })
     }
 
     const todoItemPriorityOnHover = (itemId, priority) => {
         let todoItem = document.getElementById(itemId);
-        if (priority === '!') {
+        if (priority === 'low') {
             todoItem.addEventListener('mouseenter', () => {
-                todoItem.style.border = '1px solid rgba(255, 255, 0, 0.5)';
+                todoItem.style.border = '1px solid rgba(255, 255, 0, 0.8)';
             });
             todoItem.addEventListener('mouseleave', () => {
                 todoItem.style.border = '1px solid white';
             });
-        } else if (priority === '!!') {
+        } else if (priority === 'medium') {
             todoItem.addEventListener('mouseenter', () => {
-                todoItem.style.border = '1px solid rgba(255, 165, 0, 0.5)';
+                todoItem.style.border = '1px solid rgba(255, 165, 0, 0.8)';
             });
             todoItem.addEventListener('mouseleave', () => {
                 todoItem.style.border = '1px solid white';
             });
-        } else if (priority === '!!!') {
+        } else if (priority === 'high') {
             todoItem.addEventListener('mouseenter', () => {
-                todoItem.style.border = '1px solid rgba(255, 0, 0, 0.5)';
+                todoItem.style.border = '1px solid rgba(255, 0, 0, 0.8)';
             });
             todoItem.addEventListener('mouseleave', () => {
                 todoItem.style.border = '1px solid white';

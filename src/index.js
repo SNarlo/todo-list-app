@@ -14,7 +14,6 @@ function init() {
   PopupMenu.addListItem();
   //List item logic
   listItemLogic.listLogic();
-  listItemLogic.createGeneralList();
   //Todo item logic
   todoItemAddButton.todoItemPopupLogic();
   submitTodoItem.submitForm();

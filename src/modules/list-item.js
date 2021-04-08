@@ -12,7 +12,8 @@ const listItemLogic = (() => {
 
 
     const listLogic = () => {
-        renderExistingLists();
+        renderExistingLists()
+        createGeneralList();
     }
 
     const createGeneralList = () => {
