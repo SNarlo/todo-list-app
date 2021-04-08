@@ -11,18 +11,34 @@ const submitTodoItem = (() => {
     const submitFormButton = document.querySelector('.submit-todo-item');
     const itemDescription = document.querySelector('#item-desc');
     const dueDate = document.querySelector('#todo-due');
-    const priority = document.querySelector('#priority');
+    const priority = document.getElementsByName('priority');
+    function checkedPriority() {
+        var value = '';
+        priority.forEach(element => {
+            if (element.checked) {
+                let id = element.id + '-label';
+                let priorityValue = document.getElementById(id).innerHTML;
+                value = priorityValue;
+            }
+        });
+        return value;
+    }
+
 
     const submitForm = () => {
         submitFormButton.addEventListener('click', () => {
             const autoId = rootRef.push().key;
-            addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, priority.value, listItemLogic.getActiveList());
-            todoItem.createAndAddToDo(itemDescription.value, dueDate.value, priority.value, autoId);
+            addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, checkedPriority(), listItemLogic.getActiveList());
+            todoItem.createAndAddToDo(itemDescription.value, dueDate.value, checkedPriority(), autoId);
             
             // Reset the form
             itemDescription.value = '';
             dueDate.value = '';
-            priority.value = '';
+            priority.forEach(element => {
+                if (element.checked) {
+                    element.checked =false;
+                }
+            })
             formWindow.style.display = 'none';
         })
     }

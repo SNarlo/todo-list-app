@@ -50,9 +50,12 @@
             <h3 class="todo-form-heading">Priority</h3>
             <label for="priority"></label>
             <div class="input-buttons">
-              <input type="button" value="Low">
-              <input type="button" value="Medium">
-              <input type="button" value="High">
+              <label id='low-priority-label' for="low-priority">Low</label>
+              <input type="radio" name="priority" id="low-priority">
+              <label id='medium-priority-label' for="medium-priority">Medium</label>
+              <input type="radio" name="priority" id="medium-priority">
+              <label id='high-priority-label' for="high-priority">High</label>
+              <input type="radio" name="priority" id="high-priority">
             </div>
             <button class="submit-todo-item">Submit</button>
           </div>
@@ -81,9 +84,12 @@
                   <h3 class="todo-form-heading">Priority</h3>
                   <label for="priority"></label>
                   <div class="input-buttons">
-                    <input class="priority-button" id="low" type="button" value="Low">
-                    <input class="priority-button" id="medium" type="button" value="Medium">
-                    <input class="priority-button" id="high" type="button" value="High">
+                    <label for="low-priority">Low</label>
+                    <input type="radio" name="expanded-priority" id="low-priority">
+                    <label for="medium-priority">Medium</label>
+                    <input type="radio" name="expanded-priority" id="medium-priority">
+                    <label for="high-priority">High</label>
+                    <input type="radio" name="expanded-priority" id="high-priority">
                   </div>
                   <button class="submit-todo-item">Submit Edit</button>
                 </div>
