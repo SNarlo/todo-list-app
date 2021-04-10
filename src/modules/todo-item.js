@@ -35,7 +35,7 @@ const todoItem = (() => {
         priorityValue.textContent = priority;
         priorityContainer.appendChild(priorityValue);
 
-        const deleteTodoItem = document.createElement('span');
+        const deleteTodoItem = document.createElement('div');
         deleteTodoItem.className = 'delete-todo-item';
         let trashCan = document.createElement('img');
         trashCan.className = 'delete-todo-item';
@@ -47,9 +47,9 @@ const todoItem = (() => {
         parentContainer.appendChild(priorityContainer);
         parentContainer.appendChild(deleteTodoItem);
 
-        addTodoItemToBoard(parentContainer);
         allowModalPopup(parentContainer, description, dueDate, priority); // Modal popup functionality
-        todoItemPriorityOnHover(parentContainer.id, priority);
+        addTodoItemToBoard(parentContainer);
+        
     }
 
     const createTodoItemContainer = () => {
@@ -78,10 +78,11 @@ const todoItem = (() => {
     const allowDeleteTodoItem = (item) => {
         let deleteButton = item.querySelector('.delete-todo-item');
         let itemId = item.id;
-        deleteButton.addEventListener('click', () => {
+        deleteButton.addEventListener('click', e => {
+            e.cancelBubble = true;
             item.remove();
             deleteItemFromDatabase(itemId);
-        })    
+        })            
     }
 
     const deleteItemFromDatabase = (itemId) => { 
@@ -117,6 +118,8 @@ const todoItem = (() => {
             popup.style.display = 'block';
             itemDescription.value = description;
             dueDateInput.value = dueDate;
+            console.log('frfeffdfdfddf')
+
         });
 
         closeForm.addEventListener('click', () => {
@@ -124,31 +127,6 @@ const todoItem = (() => {
         })
     }
 
-    const todoItemPriorityOnHover = (itemId, priority) => {
-        let todoItem = document.getElementById(itemId);
-        if (priority === 'low') {
-            todoItem.addEventListener('mouseenter', () => {
-                todoItem.style.border = '1px solid rgba(255, 255, 0, 0.8)';
-            });
-            todoItem.addEventListener('mouseleave', () => {
-                todoItem.style.border = '1px solid white';
-            });
-        } else if (priority === 'medium') {
-            todoItem.addEventListener('mouseenter', () => {
-                todoItem.style.border = '1px solid rgba(255, 165, 0, 0.8)';
-            });
-            todoItem.addEventListener('mouseleave', () => {
-                todoItem.style.border = '1px solid white';
-            });
-        } else if (priority === 'high') {
-            todoItem.addEventListener('mouseenter', () => {
-                todoItem.style.border = '1px solid rgba(255, 0, 0, 0.8)';
-            });
-            todoItem.addEventListener('mouseleave', () => {
-                todoItem.style.border = '1px solid white';
-            });
-        }
-    }
 
     const completedTodoItem = () => { // need to do this 
        
@@ -178,7 +156,6 @@ const todoItem = (() => {
     return {
         createAndAddToDo,
         TodoItemObjectLogic,
-        todoItemPriorityOnHover,
         clearTodoItemBoard,
         deleteTodoItemOnListDelete,
         renderTodoItemsToBoardFromDB,

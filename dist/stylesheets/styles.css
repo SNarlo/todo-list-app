@@ -206,6 +206,7 @@ body {
     display: flex;
     padding: 2.5%;
     height: 100%;
+    overflow-y: scroll;
 }
 
 .todo-items-board {
