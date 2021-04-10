@@ -49,6 +49,7 @@ const todoItem = (() => {
 
         allowModalPopup(parentContainer, description, dueDate, priority); // Modal popup functionality
         addTodoItemToBoard(parentContainer);
+        completedTodoItem(autoId);
         
     }
 
@@ -118,8 +119,6 @@ const todoItem = (() => {
             popup.style.display = 'block';
             itemDescription.value = description;
             dueDateInput.value = dueDate;
-            console.log('frfeffdfdfddf')
-
         });
 
         closeForm.addEventListener('click', () => {
@@ -127,9 +126,13 @@ const todoItem = (() => {
         })
     }
 
-
-    const completedTodoItem = () => { // need to do this 
-       
+    const completedTodoItem = (containerId) => { 
+        let todoItemContainer = document.getElementById(containerId);
+        const checkBox = todoItemContainer.querySelector('.check-box');
+        checkBox.addEventListener('click', e => {
+            e.cancelBubble = true;
+            todoItemContainer.style.setProperty("text-decoration", "line-through");
+        });
     }
 
     const clearTodoItemBoard = () => {
