@@ -114,11 +114,19 @@ const todoItem = (() => {
         const itemDescription = document.getElementById('expanded-item-desc');
         const dueDateInput = document.getElementById('expanded-todo-due');
         const closeForm = document.getElementById('close-expanded-todo-form');
-
+        var priorityValue = priority.toLowerCase() + '-priority-expanded';
+        const priorityButtons = document.getElementsByName('expanded-priority');
+    
         container.addEventListener('click', () => {
             popup.style.display = 'block';
             itemDescription.value = description;
             dueDateInput.value = dueDate;
+            priorityButtons.forEach(e => {
+                if (e.id === priorityValue) {
+                    e.checked = true;
+                    console.log(e.checked);
+                }
+            })
         });
 
         closeForm.addEventListener('click', () => {
@@ -130,10 +138,19 @@ const todoItem = (() => {
         let todoItemContainer = document.getElementById(containerId);
         const checkBox = todoItemContainer.querySelector('.check-box');
         checkBox.addEventListener('click', e => {
-            e.cancelBubble = true;
-            todoItemContainer.style.setProperty("text-decoration", "line-through");
+            if (!todoItemContainer.className.includes('-completed')) {
+                e.cancelBubble = true;
+                todoItemContainer.style.setProperty("text-decoration", "line-through");
+                todoItemContainer.className += ' todo-item-completed';
+            } else if (todoItemContainer.className.includes('-completed')) {
+                e.cancelBubble = true;
+                todoItemContainer.style.setProperty("text-decoration", "none");
+                todoItemContainer.setAttribute('class', 'todo-item'); 
+            }
+            
         });
     }
+
 
     const clearTodoItemBoard = () => {
         let todoItems = Array.from(document.getElementsByClassName('todo-item'));

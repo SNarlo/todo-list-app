@@ -36,7 +36,7 @@ const submitTodoItem = (() => {
             dueDate.value = '';
             priority.forEach(element => {
                 if (element.checked) {
-                    element.checked =false;
+                    element.checked = false;
                 }
             })
             formWindow.style.display = 'none';

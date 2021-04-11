@@ -225,6 +225,7 @@ body {
     align-items: center;
     height: 32px;
     width: 95%;
+    font-size: 14px;
     border: 1px solid white;
     margin-bottom: 1.7em;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
@@ -348,19 +349,19 @@ body {
 }
 
 /* Radio buttons for the modal forms */
-.input-buttons input[type='radio'] {
+.input-buttons input[type='radio'], .input-buttons-expanded input[type='radio'] {
     opacity: 0;
     position: fixed;
     width: 0;
 }
 
-.input-buttons label {
+.input-buttons label, .input-buttons-expanded label {
     display: inline-block;
     background-color: white;
     padding: 10px 20px;
     font-family: neue-regular;
     font-size: 16px;
-    border: 2px solid black;
+    border: 1px solid black;
     border-radius: 4px;
 }
 
@@ -375,6 +376,21 @@ body {
 }
 
 .input-buttons input[type="radio"]:checked + #high-priority-label {
+    background-color:rgba(255, 0, 0, .3);
+    border-color: rgba(255, 0, 0, 1);
+}
+
+.input-buttons-expanded input[type="radio"]:checked + #low-priority-expanded-label {
+    background-color:rgba(255, 255, 0, .3);
+    border-color: rgba(255, 255, 0, 1);
+}
+
+.input-buttons-expanded input[type="radio"]:checked + #medium-priority-expanded-label {
+    background-color:rgba(255, 165, 0, .3);
+    border-color: rgba(255, 165, 0, 1);
+}
+
+.input-buttons-expanded input[type="radio"]:checked + #high-priority-expanded-label {
     background-color:rgba(255, 0, 0, .3);
     border-color: rgba(255, 0, 0, 1);
 }
