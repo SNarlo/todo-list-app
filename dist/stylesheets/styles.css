@@ -225,7 +225,7 @@ body {
     align-items: center;
     height: 32px;
     width: 95%;
-    font-size: 14px;
+    font-size: 12px;
     border: 1px solid white;
     margin-bottom: 1.7em;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
@@ -325,8 +325,8 @@ body {
 }
 
 .delete-todo-item {
-    height: 16px;
-    width: 16px;
+    height: 13px;
+    width: 13px;
     cursor: pointer;
     margin-left: 1%;
 }
@@ -366,8 +366,8 @@ body {
 }
 
 .input-buttons input[type="radio"]:checked + #low-priority-label {
-    background-color:rgba(255, 255, 0, .3);
-    border-color: rgba(255, 255, 0, 1);
+    background-color:rgb(88, 187, 42, 0.3);
+    border-color: rgb(88, 187, 42, 1);
 }
 
 .input-buttons input[type="radio"]:checked + #medium-priority-label {
@@ -381,8 +381,8 @@ body {
 }
 
 .input-buttons-expanded input[type="radio"]:checked + #low-priority-expanded-label {
-    background-color:rgba(255, 255, 0, .3);
-    border-color: rgba(255, 255, 0, 1);
+    background-color:rgb(88, 187, 42, 0.3);
+    border-color: rgb(88, 187, 42, 1);
 }
 
 .input-buttons-expanded input[type="radio"]:checked + #medium-priority-expanded-label {
@@ -516,7 +516,7 @@ body {
     width: 80%;
     height: 1.5em;
     margin-top: 1em;
-    font-size: 22px;
+    font-size: 16px;
     background-color: white;
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     border: none;
@@ -536,6 +536,6 @@ body {
 }
 
 .delete-icon {
-    height: 12px;
-    width: 12px;
+    height: 9px;
+    width: 9px;
 }

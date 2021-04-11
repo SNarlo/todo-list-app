@@ -7,6 +7,11 @@ const todoItem = (() => {
 
     const database = firebase.database();
     const rootRefTodoItems = database.ref('todo-items');
+    const colors = {
+        'Low': 'green',
+        'Medium': 'orange',
+        'High': 'red',
+    }
 
     const TodoItemObjectLogic = () => {
         let container = createTodoItemContainer();
@@ -33,6 +38,7 @@ const todoItem = (() => {
         priorityContainer.id = 'priority-container';
         const priorityValue = document.createElement('p');
         priorityValue.textContent = priority;
+        priorityValue.style.color = colors[priority];
         priorityContainer.appendChild(priorityValue);
 
         const deleteTodoItem = document.createElement('div');
