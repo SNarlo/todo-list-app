@@ -234,6 +234,24 @@ body {
     padding-right: 1%;
 }
 
+.todo-item-completed {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 32px;
+    width: 95%;
+    opacity: 0.5;
+    border: 1px solid rgba(0, 0, 0, 0.0);
+    background-color: rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.7em;
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.2);
+    margin-top: 0.3em;
+    margin-left: 1%;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+
 /* CHECKBOX */
 /* ///////////  */
 .todo-item input {
@@ -467,11 +485,11 @@ body {
 }
 
 #seperator {
-    margin-top: 5%;
+    margin-top: 15%;
     margin-bottom: 5%;
     height: 4px;
-    width: 100%;
-    background-color: black;
+    width: 50%;
+    background-color: rgba(0, 0, 0, 0.1)
 }
 
 
