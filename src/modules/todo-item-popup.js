@@ -2,7 +2,7 @@ import todoItem from './todo-item';
 import listItemLogic from './list-item';
 
 /**
- * A module to handle the todo item modular popup
+ * A module to handle the todo item modular popups
  */
 const submitTodoItem = (() => {
     const database = firebase.database();
@@ -12,7 +12,9 @@ const submitTodoItem = (() => {
     const itemDescription = document.querySelector('#item-desc');
     const dueDate = document.querySelector('#todo-due');
     const priority = document.getElementsByName('priority');
-    function checkedPriority() {
+    const editPriority = document.getElementsByName('expanded-priority');
+    
+    function checkedPriorityAddition() {
         var value = '';
         priority.forEach(element => {
             if (element.checked) {
@@ -23,13 +25,25 @@ const submitTodoItem = (() => {
         });
         return value;
     }
-
+    
+    //Bad code practice, but it works for the situation I made a mess of
+    function checkedPriorityEdit() {
+        var value = '';
+        editPriority.forEach(element => {
+            if (element.checked) {
+                let id = element.id + '-label';
+                let priorityValue = document.getElementById(id).innerHTML;
+                value = priorityValue;
+            }
+        });
+        return value;
+    }
 
     const submitForm = () => {
         submitFormButton.addEventListener('click', () => {
             const autoId = rootRef.push().key;
-            addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, checkedPriority(), listItemLogic.getActiveList());
-            todoItem.createAndAddToDo(itemDescription.value, dueDate.value, checkedPriority(), autoId);
+            addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, checkedPriorityAddition(), listItemLogic.getActiveList());
+            todoItem.createAndAddToDo(itemDescription.value, dueDate.value, checkedPriorityAddition(), autoId);
             
             // Reset the form
             itemDescription.value = '';
@@ -40,6 +54,36 @@ const submitTodoItem = (() => {
                 }
             })
             formWindow.style.display = 'none';
+        })
+    }
+
+    const submitEdit = (itemId) => {
+        const popup = document.querySelector('.expanded-todo-item');
+        const submitEditButton = document.querySelector('.submit-todo-item-edit');
+        submitEditButton.addEventListener('click', () => {
+            let todoItemSelected = document.getElementById(itemId);
+
+            // form items
+            let formDescription = document.getElementById('expanded-item-desc');
+            let formNewDate = document.getElementById('expanded-todo-due');
+            let formNewPriority = checkedPriorityEdit();
+            
+
+            // todo-item items
+            let descriptionValue = document.querySelector('#description-container p');
+            let dueDateValue = document.querySelector('#date-container p');
+            let newPriorityValue = document.querySelector('#priority-container p');
+
+            descriptionValue.textContent = formDescription.value;
+            dueDateValue.textContent = todoItem.formatDateCorrectly(formNewDate.value);
+            newPriorityValue.textContent = formNewPriority;
+
+            popup.style.display = 'none';
+            
+            
+            // Change the values in db
+            // Do mobile view, then done
+
         })
     }
     
@@ -55,6 +99,7 @@ const submitTodoItem = (() => {
 
     return {
         submitForm,
+        submitEdit,
         addTodoItemsToDb,
     }
 })();

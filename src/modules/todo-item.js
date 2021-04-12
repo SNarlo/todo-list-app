@@ -1,3 +1,4 @@
+import submitTodoItem from './todo-item-popup'
 
 /**
  * This is a todo item within a particular list
@@ -45,7 +46,7 @@ const todoItem = (() => {
         deleteTodoItem.className = 'delete-todo-item';
         let trashCan = document.createElement('img');
         trashCan.className = 'delete-todo-item';
-        trashCan.src = '../dist/imgs/trash-can.svg';  //TODO: NEED TO STOP THIS BRINGING UP MENU
+        trashCan.src = '../dist/imgs/trash-can.svg'; 
         deleteTodoItem.appendChild(trashCan);
         
         parentContainer.appendChild(itemDescriptionContainer);
@@ -112,11 +113,6 @@ const todoItem = (() => {
     }
     
 
-    const submitEdit = () => {
-
-    }
-
-
     const deleteTodoItemOnListDelete = (listId) => { 
         rootRefTodoItems.once('value', snapshot => {
             snapshot.forEach(element => {
@@ -145,7 +141,6 @@ const todoItem = (() => {
             priorityButtons.forEach(e => {
                 if (e.id === priorityValue) {
                     e.checked = true;
-                    console.log(e.checked);
                 }
             })
         });
@@ -153,6 +148,8 @@ const todoItem = (() => {
         closeForm.addEventListener('click', () => {
             popup.style.display = 'none';
         })
+
+        submitTodoItem.submitEdit(container.id)
     }
 
     const completedTodoItem = (containerId) => { 
@@ -198,6 +195,7 @@ const todoItem = (() => {
         createAndAddToDo,
         TodoItemObjectLogic,
         clearTodoItemBoard,
+        formatDateCorrectly,
         deleteTodoItemOnListDelete,
         renderTodoItemsToBoardFromDB,
     }
