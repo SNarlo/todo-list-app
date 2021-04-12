@@ -31,7 +31,7 @@ const todoItem = (() => {
         const dueDateContainer = document.createElement('span');
         dueDateContainer.id = 'date-container';
         const dueDateValue = document.createElement('p');
-        dueDateValue.textContent = dueDate;
+        dueDateValue.textContent = formatDateCorrectly(dueDate);
         dueDateContainer.appendChild(dueDateValue);
 
         const priorityContainer = document.createElement('span');
@@ -101,6 +101,21 @@ const todoItem = (() => {
             })
         })
     }
+
+    const formatDateCorrectly = (date) => {
+        if (date.includes('-')) {
+            let seperatedDate = date.split('-');
+            let newDate = seperatedDate[2] + '/' + seperatedDate[1] + '/' + seperatedDate[0];
+            return newDate;
+        }
+        return;
+    }
+    
+
+    const submitEdit = () => {
+
+    }
+
 
     const deleteTodoItemOnListDelete = (listId) => { 
         rootRefTodoItems.once('value', snapshot => {
