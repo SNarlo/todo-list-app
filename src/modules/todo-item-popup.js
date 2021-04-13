@@ -58,22 +58,22 @@ const submitTodoItem = (() => {
     }
 
     const submitEdit = (itemId) => {
+
         const popup = document.querySelector('.expanded-todo-item');
         const submitEditButton = document.querySelector('.submit-todo-item-edit');
-        submitEditButton.addEventListener('click', () => {
-            let todoItemSelected = document.getElementById(itemId);
-
+        submitEditButton.addEventListener('click', () => {        
             // form items
             let formDescription = document.getElementById('expanded-item-desc');
             let formNewDate = document.getElementById('expanded-todo-due');
             let formNewPriority = checkedPriorityEdit();
             
-
             // todo-item items
-            let descriptionValue = document.querySelector('#description-container p');
-            let dueDateValue = document.querySelector('#date-container p');
-            let newPriorityValue = document.querySelector('#priority-container p');
+            let descriptionValue = document.querySelector('#' + itemId + '-description-container p');
+            let dueDateValue = document.querySelector('#' + itemId + '-date-container p');
+            let newPriorityValue = document.querySelector('#' + itemId + '-priority-container p');
 
+            console.log(descriptionValue, dueDateValue, newPriorityValue)
+    
             descriptionValue.textContent = formDescription.value;
             dueDateValue.textContent = todoItem.formatDateCorrectly(formNewDate.value);
             newPriorityValue.textContent = formNewPriority;
@@ -83,7 +83,6 @@ const submitTodoItem = (() => {
             
             // Change the values in db
             // Do mobile view, then done
-
         })
     }
     

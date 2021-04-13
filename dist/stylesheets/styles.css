@@ -306,20 +306,20 @@ body {
 
 /* ///////////  */
 
-#description-container {
+.description-container {
     width: 70%;
     padding-left: 1%;
     padding-right: 1%;
     border-right: 2px solid whitesmoke;
 }
 
-#date-container {
+.date-container {
     text-align: center;
     width: 20%;
     border-right: 2px solid whitesmoke;
 }
 
-#priority-container {
+.priority-container {
     text-align: center;
     width: 10%;
 }
@@ -331,7 +331,7 @@ body {
     margin-left: 1%;
 }
 
-#priority-container p, #date-container p, #description-container p {
+.priority-container p, .date-container p, .description-container p {
     font-family: neue-regular;
 }
 

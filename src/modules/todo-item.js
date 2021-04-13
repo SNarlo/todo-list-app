@@ -14,6 +14,10 @@ const todoItem = (() => {
         'High': 'red',
     }
 
+    var listItems = {
+
+    }
+
     const TodoItemObjectLogic = () => {
         let container = createTodoItemContainer();
         addTodoItemToBoard(container);        
@@ -24,19 +28,22 @@ const todoItem = (() => {
         parentContainer.id = autoId;
 
         const itemDescriptionContainer = document.createElement('span');
-        itemDescriptionContainer.id = 'description-container';
+        itemDescriptionContainer.id = autoId + '-description-container';
+        itemDescriptionContainer.className = 'description-container';
         const descriptionValue = document.createElement('p');
         descriptionValue.textContent = description;
         itemDescriptionContainer.appendChild(descriptionValue);
 
         const dueDateContainer = document.createElement('span');
-        dueDateContainer.id = 'date-container';
+        dueDateContainer.id = autoId + '-date-container';
+        dueDateContainer.className = 'date-container'
         const dueDateValue = document.createElement('p');
         dueDateValue.textContent = formatDateCorrectly(dueDate);
         dueDateContainer.appendChild(dueDateValue);
 
         const priorityContainer = document.createElement('span');
-        priorityContainer.id = 'priority-container';
+        priorityContainer.id = autoId + '-priority-container';
+        priorityContainer.className = 'priority-container'
         const priorityValue = document.createElement('p');
         priorityValue.textContent = priority;
         priorityValue.style.color = colors[priority];
@@ -56,8 +63,7 @@ const todoItem = (() => {
 
         allowModalPopup(parentContainer, description, dueDate, priority); // Modal popup functionality
         addTodoItemToBoard(parentContainer);
-        completedTodoItem(autoId);
-        
+        completedTodoItem(autoId);        
     }
 
     const createTodoItemContainer = () => {
@@ -133,6 +139,8 @@ const todoItem = (() => {
         const closeForm = document.getElementById('close-expanded-todo-form');
         var priorityValue = priority.toLowerCase() + '-priority-expanded';
         const priorityButtons = document.getElementsByName('expanded-priority');
+        // const container = document.getElementById(containerId)
+        // console.log(container)
     
         container.addEventListener('click', () => {
             popup.style.display = 'block';
@@ -143,13 +151,13 @@ const todoItem = (() => {
                     e.checked = true;
                 }
             })
+            submitTodoItem.submitEdit(container.id);
         });
 
         closeForm.addEventListener('click', () => {
             popup.style.display = 'none';
         })
-
-        submitTodoItem.submitEdit(container.id)
+        
     }
 
     const completedTodoItem = (containerId) => { 
@@ -192,6 +200,7 @@ const todoItem = (() => {
     }
 
     return {
+        listItems,
         createAndAddToDo,
         TodoItemObjectLogic,
         clearTodoItemBoard,
