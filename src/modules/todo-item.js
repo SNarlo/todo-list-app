@@ -61,9 +61,9 @@ const todoItem = (() => {
         parentContainer.appendChild(priorityContainer);
         parentContainer.appendChild(deleteTodoItem);
 
-        allowModalPopup(parentContainer, description, dueDate, priority); // Modal popup functionality
         addTodoItemToBoard(parentContainer);
         completedTodoItem(autoId);        
+        allowModalPopup(autoId, description, dueDate, priority); // Modal popup functionality
     }
 
     const createTodoItemContainer = () => {
@@ -132,16 +132,15 @@ const todoItem = (() => {
         })
     }
 
-    const allowModalPopup = (container, description, dueDate, priority) => { // need to do
+    const allowModalPopup = (containerId, description, dueDate, priority) => { // need to do
         const popup = document.querySelector('.expanded-todo-item');
         const itemDescription = document.getElementById('expanded-item-desc');
         const dueDateInput = document.getElementById('expanded-todo-due');
         const closeForm = document.getElementById('close-expanded-todo-form');
         var priorityValue = priority.toLowerCase() + '-priority-expanded';
         const priorityButtons = document.getElementsByName('expanded-priority');
-        // const container = document.getElementById(containerId)
-        // console.log(container)
-    
+        const container = document.getElementById(containerId)
+
         container.addEventListener('click', () => {
             popup.style.display = 'block';
             itemDescription.value = description;
@@ -151,7 +150,6 @@ const todoItem = (() => {
                     e.checked = true;
                 }
             })
-            submitTodoItem.submitEdit(container.id);
         });
 
         closeForm.addEventListener('click', () => {

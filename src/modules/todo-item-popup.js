@@ -80,7 +80,7 @@ const submitTodoItem = (() => {
 
             popup.style.display = 'none';
             
-            
+            // Still need to fix this!!!!!
             // Change the values in db
             // Do mobile view, then done
         })
