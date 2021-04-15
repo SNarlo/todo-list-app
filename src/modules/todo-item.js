@@ -14,18 +14,14 @@ const todoItem = (() => {
         'High': 'red',
     }
 
-    var listItems = {
-
-    }
 
     const TodoItemObjectLogic = () => {
         let container = createTodoItemContainer();
-        addTodoItemToBoard(container);        
+        addTodoItemToBoard(container);          
     }
 
     const createAndAddToDo = (description, dueDate, priority, autoId) => {
-        const parentContainer = createTodoItemContainer();
-        parentContainer.id = autoId;
+        const parentContainer = createTodoItemContainer(autoId);
 
         const itemDescriptionContainer = document.createElement('span');
         itemDescriptionContainer.id = autoId + '-description-container';
@@ -66,9 +62,10 @@ const todoItem = (() => {
         allowModalPopup(autoId, description, dueDate, priority); // Modal popup functionality
     }
 
-    const createTodoItemContainer = () => {
+    const createTodoItemContainer = (id) => {
         const container = document.createElement('div');
         container.setAttribute('class', 'todo-item');
+        container.id = id;
 
         const radioButton = document.createElement('input');
         radioButton.className = 'check-box';
@@ -140,16 +137,19 @@ const todoItem = (() => {
         var priorityValue = priority.toLowerCase() + '-priority-expanded';
         const priorityButtons = document.getElementsByName('expanded-priority');
         const container = document.getElementById(containerId)
-
+        
         container.addEventListener('click', () => {
+            
             popup.style.display = 'block';
             itemDescription.value = description;
             dueDateInput.value = dueDate;
+            
             priorityButtons.forEach(e => {
                 if (e.id === priorityValue) {
                     e.checked = true;
                 }
             })
+            submitTodoItem.submitEdit(containerId)
         });
 
         closeForm.addEventListener('click', () => {
@@ -198,7 +198,6 @@ const todoItem = (() => {
     }
 
     return {
-        listItems,
         createAndAddToDo,
         TodoItemObjectLogic,
         clearTodoItemBoard,
