@@ -14,7 +14,6 @@ const todoItem = (() => {
         'High': 'red',
     }
 
-
     const TodoItemObjectLogic = () => {
         let container = createTodoItemContainer();
         addTodoItemToBoard(container);          
@@ -130,32 +129,28 @@ const todoItem = (() => {
     }
 
     const getAllTodoItems = () => {
-        
+        items.forEach(e => {
+            console.log(e);
+        })
     }
-    // Thinking off making a function which applies an event listener to all todo items
-
-    // let uniqueSubmit = document.getElementById(containerId + 'submit-edit')
-
-    //         uniqueSubmit.addEventListener('click', () => {   
-    //             editItem(containerId);
-    //             popup.style.display = 'none';
-    //         });
 
     const editItem = (containerId) => {
-        let descriptionValue = document.getElementById(containerId + '-description-value');
-        let dueDateValue = document.getElementById(containerId + '-date-value');
-        let newPriorityValue = document.getElementById(containerId + '-priority-value');
-    
-        console.log(descriptionValue, dueDateValue, newPriorityValue)
-    
-        // form items
-        let formDescription = document.getElementById('expanded-item-desc');
-        let formNewDate = document.getElementById('expanded-todo-due');
-        let formNewPriority = submitTodoItem.checkedPriorityEdit();
-                        
-        descriptionValue.textContent = formDescription.value;
-        dueDateValue.textContent = formNewDate.value;
-        newPriorityValue.textContent = todoItem.colors[formNewPriority.values];
+        
+            const popup = document.querySelector('.expanded-todo-item');
+
+            let descriptionValue = document.getElementById(containerId + '-description-value');
+            let dueDateValue = document.getElementById(containerId + '-date-value');
+            let newPriorityValue = document.getElementById(containerId + '-priority-value');
+        
+            // form items
+            let formDescription = document.getElementById('expanded-item-desc');
+            let formNewDate = document.getElementById('expanded-todo-due');
+            let formNewPriority = submitTodoItem.checkedPriorityEdit();
+                            
+            descriptionValue.textContent = formDescription.value;
+            dueDateValue.textContent = formNewDate.value;
+            newPriorityValue.textContent = todoItem.colors[formNewPriority.values];
+            popup.style.display = 'none';
     
         // Change the values in db
         // Do mobile view, then done
@@ -173,8 +168,8 @@ const todoItem = (() => {
         const container = document.getElementById(containerId);
         const submitEditButton = document.querySelector('.submit-todo-item-edit');
     
+        
         container.addEventListener('click', () => {
-            
             submitEditButton.id = containerId + 'submit-edit';
 
             popup.style.display = 'block';
@@ -186,12 +181,18 @@ const todoItem = (() => {
                     e.checked = true;
                 }
             }) 
-            
-        });
 
-        closeForm.addEventListener('click', () => {
-            popup.style.display = 'none';
-        })
+
+            let uniqueSubmit = document.getElementById(containerId + 'submit-edit')
+
+            uniqueSubmit.addEventListener('click', editItem(containerId));
+
+            uniqueSubmit.removeEventListener('click', editItem(containerId))
+
+            closeForm.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+        });
 
     }
 
@@ -236,6 +237,8 @@ const todoItem = (() => {
 
     return {
         colors,
+        getAllTodoItems,
+        editItem,
         createAndAddToDo,
         TodoItemObjectLogic,
         clearTodoItemBoard,

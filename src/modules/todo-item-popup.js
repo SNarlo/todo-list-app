@@ -57,27 +57,6 @@ const submitTodoItem = (() => {
         })
     }
 
-    const submitEdit = (itemId) => {
-        const popup = document.querySelector('.expanded-todo-item');
-        const submitEditButton = document.querySelector('.submit-todo-item-edit');
-        submitEditButton.addEventListener('click', () => {      
-
-            // form items
-            let formDescription = document.getElementById('expanded-item-desc');
-            let formNewDate = document.getElementById('expanded-todo-due');
-            let formNewPriority = checkedPriorityEdit();
-            
-            let todoItem = document.getElementById(itemId);
-            console.log(todoItem);
-            
-            // Still need to fix this!!!!!
-            // Change the values in db
-            // Do mobile view, then done
-        })
-
-        //submitEditButton.removeEventListener('click');
-    }
-    
     const addTodoItemsToDb = (itemId, todoDescription, todoDueDate, todoItemPriority, parentList) => {
         rootRef.child(itemId).set({
             id: itemId,
@@ -89,8 +68,8 @@ const submitTodoItem = (() => {
     }
 
     return {
+        checkedPriorityEdit,
         submitForm,
-        submitEdit,
         addTodoItemsToDb,
     }
 })();
