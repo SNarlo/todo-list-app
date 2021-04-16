@@ -24,23 +24,23 @@ const todoItem = (() => {
         const parentContainer = createTodoItemContainer(autoId);
 
         const itemDescriptionContainer = document.createElement('span');
-        itemDescriptionContainer.id = autoId + '-description-container';
         itemDescriptionContainer.className = 'description-container';
         const descriptionValue = document.createElement('p');
+        descriptionValue.id = autoId + '-description-value';
         descriptionValue.textContent = description;
         itemDescriptionContainer.appendChild(descriptionValue);
 
         const dueDateContainer = document.createElement('span');
-        dueDateContainer.id = autoId + '-date-container';
         dueDateContainer.className = 'date-container'
         const dueDateValue = document.createElement('p');
+        dueDateValue.id = autoId + '-date-value';
         dueDateValue.textContent = formatDateCorrectly(dueDate);
         dueDateContainer.appendChild(dueDateValue);
 
         const priorityContainer = document.createElement('span');
-        priorityContainer.id = autoId + '-priority-container';
         priorityContainer.className = 'priority-container'
         const priorityValue = document.createElement('p');
+        priorityValue.id = autoId + '-priority-value';
         priorityValue.textContent = priority;
         priorityValue.style.color = colors[priority];
         priorityContainer.appendChild(priorityValue);
@@ -129,6 +129,40 @@ const todoItem = (() => {
         })
     }
 
+    const getAllTodoItems = () => {
+        
+    }
+    // Thinking off making a function which applies an event listener to all todo items
+
+    // let uniqueSubmit = document.getElementById(containerId + 'submit-edit')
+
+    //         uniqueSubmit.addEventListener('click', () => {   
+    //             editItem(containerId);
+    //             popup.style.display = 'none';
+    //         });
+
+    const editItem = (containerId) => {
+        let descriptionValue = document.getElementById(containerId + '-description-value');
+        let dueDateValue = document.getElementById(containerId + '-date-value');
+        let newPriorityValue = document.getElementById(containerId + '-priority-value');
+    
+        console.log(descriptionValue, dueDateValue, newPriorityValue)
+    
+        // form items
+        let formDescription = document.getElementById('expanded-item-desc');
+        let formNewDate = document.getElementById('expanded-todo-due');
+        let formNewPriority = submitTodoItem.checkedPriorityEdit();
+                        
+        descriptionValue.textContent = formDescription.value;
+        dueDateValue.textContent = formNewDate.value;
+        newPriorityValue.textContent = todoItem.colors[formNewPriority.values];
+    
+        // Change the values in db
+        // Do mobile view, then done
+        
+    }
+
+
     const allowModalPopup = (containerId, description, dueDate, priority) => { // need to do
         const popup = document.querySelector('.expanded-todo-item');
         const itemDescription = document.getElementById('expanded-item-desc');
@@ -136,10 +170,13 @@ const todoItem = (() => {
         const closeForm = document.getElementById('close-expanded-todo-form');
         var priorityValue = priority.toLowerCase() + '-priority-expanded';
         const priorityButtons = document.getElementsByName('expanded-priority');
-        const container = document.getElementById(containerId)
-        
+        const container = document.getElementById(containerId);
+        const submitEditButton = document.querySelector('.submit-todo-item-edit');
+    
         container.addEventListener('click', () => {
             
+            submitEditButton.id = containerId + 'submit-edit';
+
             popup.style.display = 'block';
             itemDescription.value = description;
             dueDateInput.value = dueDate;
@@ -148,14 +185,14 @@ const todoItem = (() => {
                 if (e.id === priorityValue) {
                     e.checked = true;
                 }
-            })
-            submitTodoItem.submitEdit(containerId)
+            }) 
+            
         });
 
         closeForm.addEventListener('click', () => {
             popup.style.display = 'none';
         })
-        
+
     }
 
     const completedTodoItem = (containerId) => { 
@@ -198,6 +235,7 @@ const todoItem = (() => {
     }
 
     return {
+        colors,
         createAndAddToDo,
         TodoItemObjectLogic,
         clearTodoItemBoard,
