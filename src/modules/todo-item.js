@@ -9,7 +9,7 @@ const todoItem = (() => {
 
     const database = firebase.database();
     const rootRefTodoItems = database.ref('todo-items');
-    const colors = {
+    const clours = {
         'Low': 'green',
         'Medium': 'orange',
         'High': 'red',
@@ -42,7 +42,7 @@ const todoItem = (() => {
         const priorityValue = document.createElement('p');
         priorityValue.id = autoId + '-priority-value';
         priorityValue.textContent = priority;
-        priorityValue.style.color = colors[priority];
+        priorityValue.style.color = clours[priority];
         priorityContainer.appendChild(priorityValue);
 
         const deleteTodoItem = document.createElement('div');
@@ -59,7 +59,7 @@ const todoItem = (() => {
 
         addTodoItemToBoard(parentContainer);
         completedTodoItem(autoId);        
-        // allowModalPopup(autoId, description, dueDate, priority); // Modal popup functionality
+        allowModalPopup(autoId, description, dueDate, priority); // Modal popup functionality
     }
 
     const createTodoItemContainer = (id) => {
@@ -131,13 +131,25 @@ const todoItem = (() => {
     
 
     const editItem = (containerId) => {
+            
             const popup = document.querySelector('.expanded-todo-item');
-            const submitEditButton = document.querySelector('.submit-todo-item-edit');
+
+            let submitEditButton = document.getElementById(containerId + '-button');
 
             submitEditButton.addEventListener('click', () => {
                 let newDescriptionVal = document.getElementById('expanded-item-desc').value;
                 let newDueDateVal = document.getElementById('expanded-todo-due').value;
                 let newPriorityVal = submitTodoItem.checkedPriorityEdit();
+
+                // Need to change the value
+                let descriptionValueElement = document.getElementById(containerId + '-description-value');
+                let dueDateValueElement = document.getElementById(containerId + '-date-value');    
+                let priorityValueElement = document.getElementById(containerId + '-priority-value');
+
+                descriptionValueElement.innerText = newDescriptionVal;
+                dueDateValueElement.innerText = formatDateCorrectly(newDueDateVal);
+                priorityValueElement.innerText = newPriorityVal;
+                priorityValueElement.style.color = clours[newPriorityVal];
 
                 rootRefTodoItems.once('value', snapshot => {
                     snapshot.forEach(element => {
@@ -151,40 +163,50 @@ const todoItem = (() => {
                     });
                 });
 
-            popup.style.display = 'none';
+                popup.style.display = 'none';
+                submitEditButton.remove()
             });
-            
     }
        
-    // const allowModalPopup = (containerId, description, dueDate, priority) => { // need to do
-    //     const popup = document.querySelector('.expanded-todo-item');
-    //     const itemDescription = document.getElementById('expanded-item-desc');
-    //     const dueDateInput = document.getElementById('expanded-todo-due');
-    //     const closeForm = document.getElementById('close-expanded-todo-form');
-    //     var priorityValue = priority.toLowerCase() + '-priority-expanded';
-    //     const priorityButtons = document.getElementsByName('expanded-priority');
-    //     const container = document.getElementById(containerId);
+    const allowModalPopup = (containerId, description, dueDate, priority) => { // need to do
+        // const modalFormContent = document.querySelector('.modal-form-items');
+        const popup = document.querySelector('.expanded-todo-item');
+        const itemDescription = document.getElementById('expanded-item-desc');
+        const dueDateInput = document.getElementById('expanded-todo-due');
+        const closeForm = document.getElementById('close-expanded-todo-form');
+        var priorityValue = priority.toLowerCase() + '-priority-expanded';
+        const priorityButtons = document.getElementsByName('expanded-priority');
+        const container = document.getElementById(containerId);
+
     
         
-    //     container.addEventListener('click', () => {
+        container.addEventListener('click', () => {
             
-    //         popup.style.display = 'block';
-    //         itemDescription.value = description;
-    //         dueDateInput.value = dueDate;
+            popup.style.display = 'block';
+            itemDescription.value = description;
+            dueDateInput.value = dueDate;
             
-    //         priorityButtons.forEach(e => {
-    //             if (e.id === priorityValue) {
-    //                 e.checked = true;
-    //             }
-    //         })
+            priorityButtons.forEach(e => {
+                if (e.id === priorityValue) {
+                    e.checked = true;
+                }
+            })
             
-    //         editItem(containerId);
+            const submitEditButton = document.createElement('button');
+            submitEditButton.className = "submit-todo-item-edit";
+            submitEditButton.id = (containerId + '-button');
+            submitEditButton.innerHTML = 'Submit Edit';
+            popup.appendChild(submitEditButton);
 
-    //         closeForm.addEventListener('click', () => {
-    //             popup.style.display = 'none';
-    //         });
-    //     });
-    // }
+            editItem(containerId);
+            
+            closeForm.addEventListener('click', () => {
+                popup.style.display = 'none';
+            });
+        }); 
+    }
+
+    
 
     const completedTodoItem = (containerId) => { 
         let todoItemContainer = document.getElementById(containerId);
@@ -226,7 +248,7 @@ const todoItem = (() => {
     }
 
     return {
-        colors,
+        colors: clours,
         createAndAddToDo,
         // allowModalPopup,
         TodoItemObjectLogic,
