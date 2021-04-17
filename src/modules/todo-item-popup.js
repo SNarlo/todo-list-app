@@ -45,6 +45,7 @@ const submitTodoItem = (() => {
             addTodoItemsToDb(autoId, itemDescription.value, dueDate.value, checkedPriorityAddition(), listItemLogic.getActiveList());
             todoItem.createAndAddToDo(itemDescription.value, dueDate.value, checkedPriorityAddition(), autoId);
             
+            
             // Reset the form
             itemDescription.value = '';
             dueDate.value = '';

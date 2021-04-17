@@ -348,6 +348,10 @@ body {
     background-color: rgba(0,0,0,0.4);
 }
 
+#active-item {
+    display: none;
+}
+
 /* Radio buttons for the modal forms */
 .input-buttons input[type='radio'], .input-buttons-expanded input[type='radio'] {
     opacity: 0;

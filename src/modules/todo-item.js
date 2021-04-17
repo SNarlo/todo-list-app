@@ -1,3 +1,4 @@
+import listItemLogic from './list-item';
 import submitTodoItem from './todo-item-popup'
 
 /**
@@ -58,7 +59,7 @@ const todoItem = (() => {
 
         addTodoItemToBoard(parentContainer);
         completedTodoItem(autoId);        
-        allowModalPopup(autoId, description, dueDate, priority); // Modal popup functionality
+        // allowModalPopup(autoId, description, dueDate, priority); // Modal popup functionality
     }
 
     const createTodoItemContainer = (id) => {
@@ -114,7 +115,6 @@ const todoItem = (() => {
         return;
     }
     
-
     const deleteTodoItemOnListDelete = (listId) => { 
         rootRefTodoItems.once('value', snapshot => {
             snapshot.forEach(element => {
@@ -128,73 +128,63 @@ const todoItem = (() => {
         })
     }
 
-    const getAllTodoItems = () => {
-        items.forEach(e => {
-            console.log(e);
-        })
-    }
+    
 
     const editItem = (containerId) => {
-        
             const popup = document.querySelector('.expanded-todo-item');
+            const submitEditButton = document.querySelector('.submit-todo-item-edit');
 
-            let descriptionValue = document.getElementById(containerId + '-description-value');
-            let dueDateValue = document.getElementById(containerId + '-date-value');
-            let newPriorityValue = document.getElementById(containerId + '-priority-value');
-        
-            // form items
-            let formDescription = document.getElementById('expanded-item-desc');
-            let formNewDate = document.getElementById('expanded-todo-due');
-            let formNewPriority = submitTodoItem.checkedPriorityEdit();
-                            
-            descriptionValue.textContent = formDescription.value;
-            dueDateValue.textContent = formNewDate.value;
-            newPriorityValue.textContent = todoItem.colors[formNewPriority.values];
+            submitEditButton.addEventListener('click', () => {
+                let newDescriptionVal = document.getElementById('expanded-item-desc').value;
+                let newDueDateVal = document.getElementById('expanded-todo-due').value;
+                let newPriorityVal = submitTodoItem.checkedPriorityEdit();
+
+                rootRefTodoItems.once('value', snapshot => {
+                    snapshot.forEach(element => {
+                        if (element.val()['id'] == containerId) {
+                            rootRefTodoItems.child(containerId).update({
+                                item_description : newDescriptionVal,
+                                due_date : newDueDateVal,
+                                priority : newPriorityVal,
+                            });
+                        }     
+                    });
+                });
+
             popup.style.display = 'none';
-    
-        // Change the values in db
-        // Do mobile view, then done
-        
-    }
-
-
-    const allowModalPopup = (containerId, description, dueDate, priority) => { // need to do
-        const popup = document.querySelector('.expanded-todo-item');
-        const itemDescription = document.getElementById('expanded-item-desc');
-        const dueDateInput = document.getElementById('expanded-todo-due');
-        const closeForm = document.getElementById('close-expanded-todo-form');
-        var priorityValue = priority.toLowerCase() + '-priority-expanded';
-        const priorityButtons = document.getElementsByName('expanded-priority');
-        const container = document.getElementById(containerId);
-        const submitEditButton = document.querySelector('.submit-todo-item-edit');
-    
-        
-        container.addEventListener('click', () => {
-            submitEditButton.id = containerId + 'submit-edit';
-
-            popup.style.display = 'block';
-            itemDescription.value = description;
-            dueDateInput.value = dueDate;
-            
-            priorityButtons.forEach(e => {
-                if (e.id === priorityValue) {
-                    e.checked = true;
-                }
-            }) 
-
-
-            let uniqueSubmit = document.getElementById(containerId + 'submit-edit')
-
-            uniqueSubmit.addEventListener('click', editItem(containerId));
-
-            uniqueSubmit.removeEventListener('click', editItem(containerId))
-
-            closeForm.addEventListener('click', () => {
-                popup.style.display = 'none';
             });
-        });
-
+            
     }
+       
+    // const allowModalPopup = (containerId, description, dueDate, priority) => { // need to do
+    //     const popup = document.querySelector('.expanded-todo-item');
+    //     const itemDescription = document.getElementById('expanded-item-desc');
+    //     const dueDateInput = document.getElementById('expanded-todo-due');
+    //     const closeForm = document.getElementById('close-expanded-todo-form');
+    //     var priorityValue = priority.toLowerCase() + '-priority-expanded';
+    //     const priorityButtons = document.getElementsByName('expanded-priority');
+    //     const container = document.getElementById(containerId);
+    
+        
+    //     container.addEventListener('click', () => {
+            
+    //         popup.style.display = 'block';
+    //         itemDescription.value = description;
+    //         dueDateInput.value = dueDate;
+            
+    //         priorityButtons.forEach(e => {
+    //             if (e.id === priorityValue) {
+    //                 e.checked = true;
+    //             }
+    //         })
+            
+    //         editItem(containerId);
+
+    //         closeForm.addEventListener('click', () => {
+    //             popup.style.display = 'none';
+    //         });
+    //     });
+    // }
 
     const completedTodoItem = (containerId) => { 
         let todoItemContainer = document.getElementById(containerId);
@@ -237,9 +227,8 @@ const todoItem = (() => {
 
     return {
         colors,
-        getAllTodoItems,
-        editItem,
         createAndAddToDo,
+        // allowModalPopup,
         TodoItemObjectLogic,
         clearTodoItemBoard,
         formatDateCorrectly,
