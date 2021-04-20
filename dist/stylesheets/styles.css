@@ -30,10 +30,6 @@
     letter-spacing: 0.1em;
 }
 
-.hamburger {
-    display: none;
-}
-
 /* To hide scroll bars which show when overflow y is added */
 /* /////// */
 ::-webkit-scrollbar {
@@ -47,6 +43,7 @@
     box-shadow: 0 0 1px rgba(255, 255, 255, .5);
 }
 /* /////// */
+
 
 body {
     background-color: #E9EAE9;
@@ -548,12 +545,50 @@ body {
     width: 9px;
 }
 
-@media only screen and (max-width: 400px) {
+
+.hamburger-menu {
+    display: none;
+}
+
+@media (max-width: 800px) {
+
+    .hamburger-menu {
+        display: block;
+        position: absolute;
+        top: 5%;
+        right: 2.5%;
+    }
 
     .hamburger {
-        position: absolute;
-        display: block;
-        top: 0;
-        right: 0;   
+        height: 20px;
+        width: 20px;
+    }
+
+    .list-item-section {
+        width: 100%;
+    }
+
+    .lists-section {
+        display: none;
+    }
+
+    #current-list {
+        font-size: 16px;
+    }
+
+    .description-container {
+        width: 40%;
+    }
+    
+    .date-container {
+        width: 30%;
+    }
+
+    .priority-container {
+        width: 20%;
+    }
+
+    .description-container, .date-container, .priority-container {
+        font-size: 9px;
     }
 }
