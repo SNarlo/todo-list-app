@@ -482,7 +482,8 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    height: 15%;
+    /* height: 10%; */
+    padding: 2%;
     width: 100%;
     align-items: center;
     
@@ -570,6 +571,24 @@ body {
 
     .lists-section {
         display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 60%;
+        box-shadow: -4px 0px 10px rgba(0, 0, 0, 0.2);
+        -webkit-animation: slide 2.5s forwards;
+        -webkit-animation-delay: 2s;
+        animation: slide 2.5s forwards;
+        animation-delay: 2s;
+    }
+
+    @-webkit-keyframes slide {
+        100% { right: 0; }
+    }
+    
+    @keyframes slide {
+        100% { right: 0; }
     }
 
     #current-list {
