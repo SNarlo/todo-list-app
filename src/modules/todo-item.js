@@ -208,7 +208,6 @@ const todoItem = (() => {
         }); 
     }
 
-    
 
     const completedTodoItem = (containerId) => { 
         let todoItemContainer = document.getElementById(containerId);
