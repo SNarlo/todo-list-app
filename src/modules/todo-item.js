@@ -126,6 +126,7 @@ const todoItem = (() => {
                 } 
             })
         })
+        
     }
 
     
@@ -201,6 +202,7 @@ const todoItem = (() => {
             editItem(containerId);
             
             closeForm.addEventListener('click', () => {
+                submitEditButton.remove();
                 popup.style.display = 'none';
             });
         }); 
